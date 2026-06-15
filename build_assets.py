@@ -151,43 +151,6 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- AdSense Slot -->
-        <div class="ad-container">
-            <p class="text-gray-600 text-xs">📢 Ad Space — Google AdSense Ready</p>
-            <!--
-                TODO: 将下方注释替换为 Google AdSense 广告代码
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxx" data-ad-slot="xxxxxxxxxx" data-ad-format="auto"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            -->
-        </div>
-
-        <!-- Proxy Table -->
-        <div class="glass-card rounded-xl overflow-hidden glow">
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead>
-                        <tr class="text-gray-500 text-xs uppercase tracking-wider border-b border-white/5">
-                            <th class="text-left py-3 px-4 font-medium">IP:Port</th>
-                            <th class="text-left py-3 px-4 font-medium">Protocol</th>
-                            <th class="text-left py-3 px-4 font-medium">Country</th>
-                            <th class="text-left py-3 px-4 font-medium">Anonymity</th>
-                            <th class="text-left py-3 px-4 font-medium">Speed</th>
-                            <th class="text-center py-3 px-4 font-medium">Copy</th>
-                        </tr>
-                    </thead>
-                    <tbody id="proxy_table_body">
-                        {{TABLE_ROWS}}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Bottom AdSense Slot -->
-        <div class="ad-container mt-4">
-            <p class="text-gray-600 text-xs">📢 Ad Space — Google AdSense Ready (Bottom)</p>
-        </div>
-
         <!-- API Documentation -->
         <div class="glass-card rounded-xl p-6 mt-6 glow" id="api-docs">
             <h2 class="text-xl font-semibold text-white mb-4">🔌 RESTful API 接口文档</h2>
@@ -240,6 +203,44 @@ for p in data[:5]: print(p["ip_port"])</pre>
                     <button onclick='copyText("fetch(\"https://free-proxy-hub.pages.dev/api/proxies.json\").then(r => r.json()).then(data => console.log(data))", "cp6")' id="cp6" class="text-xs text-gray-600 hover:text-white transition-colors mt-2">📋 复制</button>
                 </div>
             </div>
+        </div>
+
+
+        <!-- AdSense Slot -->
+        <div class="ad-container">
+            <p class="text-gray-600 text-xs">📢 Ad Space — Google AdSense Ready</p>
+            <!--
+                TODO: 将下方注释替换为 Google AdSense 广告代码
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxx" data-ad-slot="xxxxxxxxxx" data-ad-format="auto"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+        </div>
+
+        <!-- Proxy Table -->
+        <div class="glass-card rounded-xl overflow-hidden glow">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="text-gray-500 text-xs uppercase tracking-wider border-b border-white/5">
+                            <th class="text-left py-3 px-4 font-medium">IP:Port</th>
+                            <th class="text-left py-3 px-4 font-medium">Protocol</th>
+                            <th class="text-left py-3 px-4 font-medium">Country</th>
+                            <th class="text-left py-3 px-4 font-medium">Anonymity</th>
+                            <th class="text-left py-3 px-4 font-medium">Speed</th>
+                            <th class="text-center py-3 px-4 font-medium">Copy</th>
+                        </tr>
+                    </thead>
+                    <tbody id="proxy_table_body">
+                        {{TABLE_ROWS}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bottom AdSense Slot -->
+        <div class="ad-container mt-4">
+            <p class="text-gray-600 text-xs">📢 Ad Space — Google AdSense Ready (Bottom)</p>
         </div>
 
         <!-- Footer -->
