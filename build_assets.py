@@ -120,6 +120,8 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
                 <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span>Last Updated: <span id="update-time">{{UPDATE_TIME}}</span> UTC</span>
                 <span class="mx-2">·</span>
+                <span><a href="#api-docs" class="text-gray-500 hover:text-blue-400 transition-colors text-xs">🔌 API 文档</a></span>
+                <span class="mx-2">·</span>
                 <span>Nodes: <span id="node-count" class="text-emerald-400 font-mono">{{NODE_COUNT}}</span></span>
             </div>
         </header>
@@ -146,10 +148,9 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
                     <input type="text" id="search_ip" oninput="filterTable()" placeholder="e.g. 123.45..." class="w-full text-sm">
                 </div>
                 <div class="text-xs text-gray-500">
-                    <span id="visible-count">0</span> / <span id="total-count">{{NODE_COUNT}}</span> visible
+                    <span id="visible-count">0</span> / <span id="total-count">{{NODE_COUNT}}</span> rows
                 </div>
             </div>
-        </div>
 
         <!-- API Documentation -->
         <div class="glass-card rounded-xl p-6 mt-6 glow" id="api-docs">
@@ -235,12 +236,26 @@ for p in data[:5]: print(p["ip_port"])</pre>
                         {{TABLE_ROWS}}
                     </tbody>
                 </table>
+
+            <!-- Pagination -->
+            <div class="flex items-center justify-between px-4 py-3 border-t border-white/5">
+                <div class="text-xs text-gray-500">
+                    <span id="visible-count">0</span> / <span id="total-count">{{NODE_COUNT}}</span> rows
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="prevPage()" class="px-3 py-1 text-xs rounded bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors">‹ Prev</button>
+                    <span class="text-xs text-gray-500 px-2" id="page-info">1 / 1</span>
+                    <button onclick="nextPage()" class="px-3 py-1 text-xs rounded bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors">Next ›</button>
+                </div>
+            </div>
             </div>
         </div>
 
         <!-- Bottom AdSense Slot -->
         <div class="ad-container mt-4">
             <p class="text-gray-600 text-xs">📢 Ad Space — Google AdSense Ready (Bottom)</p>
+        </div>
+
         </div>
 
         <!-- Footer -->
@@ -302,6 +317,68 @@ for p in data[:5]: print(p["ip_port"])</pre>
                 setTimeout(() => { btn.innerHTML = orig; }, 2000);
             });
         }
+
+
+        // ==================== Pagination ====================
+        const PAGE_SIZE = 30;
+        let currentPage = 1;
+        let allRows = [];
+
+        function initPagination() {
+            allRows = Array.from(document.querySelectorAll('#proxy_table_body tr'));
+            renderPage(1);
+            updatePaginationControls();
+        }
+
+        function renderPage(page) {
+            currentPage = page;
+            const start = (page - 1) * PAGE_SIZE;
+            const end = start + PAGE_SIZE;
+
+            allRows.forEach((row, i) => {
+                if (i >= start && i < end) {
+                    row.classList.remove('hidden');
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+
+            document.getElementById('page-info').textContent = 
+                page + ' / ' + Math.ceil(allRows.length / PAGE_SIZE);
+            document.getElementById('visible-count').textContent = 
+                Math.min(end, allRows.length);
+        }
+
+        function prevPage() {
+            if (currentPage > 1) renderPage(currentPage - 1);
+        }
+
+        function nextPage() {
+            const total = Math.ceil(allRows.length / PAGE_SIZE);
+            if (currentPage < total) renderPage(currentPage + 1);
+        }
+
+        function updatePaginationControls() {
+            const total = Math.ceil(allRows.length / PAGE_SIZE);
+            document.getElementById('total-pages').textContent = total;
+        }
+
+        // Override filterTable to work with pagination
+        const origFilter = filterTable;
+        filterTable = function() {
+            origFilter();
+            // Re-apply pagination to visible rows
+            const visible = allRows.filter(r => !r.classList.contains('hidden'));
+            const page = 1;
+            visible.forEach((row, i) => {
+                if (i >= PAGE_SIZE) row.classList.add('hidden');
+            });
+            document.getElementById('visible-count').textContent = Math.min(PAGE_SIZE, visible.length);
+            document.getElementById('total-count').textContent = allRows.length;
+            document.getElementById('total-pages').textContent = Math.ceil(visible.length / PAGE_SIZE) || 1;
+            document.getElementById('page-info').textContent = '1 / ' + (Math.ceil(visible.length / PAGE_SIZE) || 1);
+            currentPage = 1;
+        };
 
         // 初始统计
         document.getElementById('visible-count').textContent = document.querySelectorAll('#proxy_table_body tr:not(.hidden)').length;
