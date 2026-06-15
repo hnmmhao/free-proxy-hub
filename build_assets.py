@@ -211,8 +211,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <div style="background:#f8f9fa;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;line-height:1.6">
 <span style="color:#888"># JavaScript</span><br>fetch("https://free-proxy-hub.pages.dev/api/proxies.json")<br>&nbsp;&nbsp;.then(r => r.json())<br>&nbsp;&nbsp;.then(data => console.log(data.slice(0,3)))</div>
 </div>
-<div class="ad-box" style="max-width:728px;margin:20px auto;min-height:90px;display:flex;align-items:center;justify-content:center;font-size:12px">广告位：728x90 底部横幅</div>
 </div>
+</div>
+</div>
+
+<div class="ad-box" style="max-width:728px;margin:20px auto;min-height:90px;display:flex;align-items:center;justify-content:center;font-size:12px">广告位：728x90 底部横幅</div>
+
 <footer class="footer">
 <div class="container"><p>Global Proxy Hub — 免费高匿代理 IP 资源站 | 数据每 30 分钟自动更新 | Powered by GitHub Actions + Cloudflare Pages</p></div></footer>
 <script>
