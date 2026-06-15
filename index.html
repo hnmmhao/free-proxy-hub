@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ GLOBAL PROXY HUB - High Performance Free Proxy Directory</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        :root { color-scheme: dark; }
+        body { background: #0a0a0f; color: #e2e8f0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        .glass-card { background: rgba(15,15,25,0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.06); }
+        .glow { box-shadow: 0 0 40px rgba(59,130,246,0.08); }
+        .proxy-row:hover { background: rgba(59,130,246,0.08); }
+        .badge { padding: 2px 10px; border-radius: 999px; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3px; }
+        .badge-http { background: rgba(59,130,246,0.2); color: #60a5fa; }
+        .badge-socks5 { background: rgba(168,85,247,0.2); color: #c084fc; }
+        .badge-speed { background: rgba(34,197,94,0.15); color: #4ade80; }
+        .ad-container { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.08); border-radius: 8px; padding: 16px; text-align: center; margin: 20px 0; min-height: 90px; display: flex; align-items: center; justify-content: center; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+        .animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        select, input { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 14px; color: #e2e8f0; outline: none; transition: all 0.2s; }
+        select:focus, input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+    </style>
+</head>
+<body>
+    <div class="max-w-7xl mx-auto px-4 py-6">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 bg-clip-text text-transparent">⚡ Global Proxy Hub</h1>
+            <p class="text-gray-500 mt-2 text-sm">Free High-Performance Proxy Directory · Updated Every 30 Minutes</p>
+            <div class="flex items-center justify-center gap-2 mt-3 text-xs text-gray-600">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Last Updated: <span id="update-time">2026-06-15 13:58:44</span> UTC</span>
+                <span class="mx-2">·</span>
+                <span>Nodes: <span id="node-count" class="text-emerald-400 font-mono">55</span></span>
+            </div>
+        </header>
+
+        <!-- Filters -->
+        <div class="glass-card rounded-xl p-4 mb-6 glow">
+            <div class="flex flex-wrap gap-4 items-center">
+                <div class="flex-1 min-w-[160px]">
+                    <label class="text-xs text-gray-500 block mb-1">🌍 Country</label>
+                    <select id="search_country" onchange="filterTable()" class="w-full text-sm">
+                        <option value="ALL">🌐 All Countries</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[140px]">
+                    <label class="text-xs text-gray-500 block mb-1">🔌 Protocol</label>
+                    <select id="search_proto" onchange="filterTable()" class="w-full text-sm">
+                        <option value="ALL">All Protocols</option>
+                        <option value="HTTP">HTTP</option>
+                        <option value="SOCKS5">SOCKS5</option>
+                    </select>
+                </div>
+                <div class="flex-1 min-w-[160px]">
+                    <label class="text-xs text-gray-500 block mb-1">🔍 Search IP</label>
+                    <input type="text" id="search_ip" oninput="filterTable()" placeholder="e.g. 123.45..." class="w-full text-sm">
+                </div>
+                <div class="text-xs text-gray-500">
+                    <span id="visible-count">0</span> / <span id="total-count">55</span> visible
+                </div>
+            </div>
+        </div>
+
+        <!-- AdSense Slot -->
+        <div class="ad-container">
+            <p class="text-gray-600 text-xs">📢 Ad Space — Google AdSense Ready</p>
+            <!--
+                TODO: 将下方注释替换为 Google AdSense 广告代码
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-xxxxxxxxxxxxxx" data-ad-slot="xxxxxxxxxx" data-ad-format="auto"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            -->
+        </div>
+
+        <!-- Proxy Table -->
+        <div class="glass-card rounded-xl overflow-hidden glow">
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="text-gray-500 text-xs uppercase tracking-wider border-b border-white/5">
+                            <th class="text-left py-3 px-4 font-medium">IP:Port</th>
+                            <th class="text-left py-3 px-4 font-medium">Protocol</th>
+                            <th class="text-left py-3 px-4 font-medium">Country</th>
+                            <th class="text-left py-3 px-4 font-medium">Anonymity</th>
+                            <th class="text-left py-3 px-4 font-medium">Speed</th>
+                            <th class="text-center py-3 px-4 font-medium">Copy</th>
+                        </tr>
+                    </thead>
+                    <tbody id="proxy_table_body">
+                        <tr class="proxy-row border-b border-white/5 data-row" data-country="US" data-proto="HTTP" data-ip="52.188.28.218">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">52.188.28.218:3128</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">US</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">97ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_0" onclick="copyIp('52.188.28.218:3128','copy_0')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="DE" data-proto="HTTP" data-ip="144.31.73.173">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">144.31.73.173:3128</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">DE</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">530ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_1" onclick="copyIp('144.31.73.173:3128','copy_1')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="EE" data-proto="HTTP" data-ip="37.49.224.15">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">37.49.224.15:3128</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">EE</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">538ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_2" onclick="copyIp('37.49.224.15:3128','copy_2')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="DE" data-proto="HTTP" data-ip="191.40.5.0">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">191.40.5.0:8888</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">DE</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">546ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_3" onclick="copyIp('191.40.5.0:8888','copy_3')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="DE" data-proto="HTTP" data-ip="91.107.168.255">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">91.107.168.255:82</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">DE</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">559ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_4" onclick="copyIp('91.107.168.255:82','copy_4')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="RU" data-proto="HTTP" data-ip="185.11.134.227">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">185.11.134.227:8443</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">RU</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">591ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_5" onclick="copyIp('185.11.134.227:8443','copy_5')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:11693</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">594ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_6" onclick="copyIp('147.161.246.34:11693','copy_6')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:443</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">595ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_7" onclick="copyIp('147.161.246.34:443','copy_7')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:11745</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">605ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_8" onclick="copyIp('147.161.246.34:11745','copy_8')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:11712</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">607ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_9" onclick="copyIp('147.161.246.34:11712','copy_9')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:11530</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">609ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_10" onclick="copyIp('147.161.246.34:11530','copy_10')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:11841</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">610ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_11" onclick="copyIp('147.161.246.34:11841','copy_11')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:8800</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">612ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_12" onclick="copyIp('147.161.246.34:8800','copy_12')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:11637</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">612ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_13" onclick="copyIp('147.161.246.34:11637','copy_13')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:11662</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">614ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_14" onclick="copyIp('147.161.246.34:11662','copy_14')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:11080</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">621ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_15" onclick="copyIp('147.161.246.34:11080','copy_15')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="DE" data-proto="HTTP" data-ip="91.107.182.124">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">91.107.182.124:82</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">DE</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">621ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_16" onclick="copyIp('91.107.182.124:82','copy_16')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="AU" data-proto="HTTP" data-ip="82.97.247.37">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">82.97.247.37:80</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">AU</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">689ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_17" onclick="copyIp('82.97.247.37:80','copy_17')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="GB" data-proto="HTTP" data-ip="91.186.213.124">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">91.186.213.124:1081</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">GB</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">701ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_18" onclick="copyIp('91.186.213.124:1081','copy_18')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="UA" data-proto="HTTP" data-ip="176.111.37.5">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">176.111.37.5:39811</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">UA</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">709ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_19" onclick="copyIp('176.111.37.5:39811','copy_19')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="RU" data-proto="HTTP" data-ip="84.47.150.125">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">84.47.150.125:1080</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">RU</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">715ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_20" onclick="copyIp('84.47.150.125:1080','copy_20')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="TR" data-proto="HTTP" data-ip="95.3.69.222">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">95.3.69.222:8080</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">TR</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">779ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_21" onclick="copyIp('95.3.69.222:8080','copy_21')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="NL" data-proto="HTTP" data-ip="45.84.222.25">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">45.84.222.25:1080</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">NL</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">780ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_22" onclick="copyIp('45.84.222.25:1080','copy_22')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="RU" data-proto="HTTP" data-ip="216.57.107.50">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">216.57.107.50:8445</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">RU</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">789ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_23" onclick="copyIp('216.57.107.50:8445','copy_23')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="BR" data-proto="HTTP" data-ip="200.174.198.32">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">200.174.198.32:8888</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">BR</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">791ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_24" onclick="copyIp('200.174.198.32:8888','copy_24')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="RU" data-proto="HTTP" data-ip="95.165.152.252">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">95.165.152.252:3128</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">RU</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">791ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_25" onclick="copyIp('95.165.152.252:3128','copy_25')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="RU" data-proto="HTTP" data-ip="185.200.188.234">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">185.200.188.234:10001</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">RU</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1049ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_26" onclick="copyIp('185.200.188.234:10001','copy_26')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="FR" data-proto="HTTP" data-ip="45.95.233.237">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">45.95.233.237:1081</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">FR</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1090ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_27" onclick="copyIp('45.95.233.237:1081','copy_27')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="SG" data-proto="HTTP" data-ip="47.79.119.13">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">47.79.119.13:8080</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">SG</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1208ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_28" onclick="copyIp('47.79.119.13:8080','copy_28')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="HK" data-proto="HTTP" data-ip="149.104.4.88">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">149.104.4.88:10809</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">HK</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1222ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_29" onclick="copyIp('149.104.4.88:10809','copy_29')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="SG" data-proto="HTTP" data-ip="159.223.87.50">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">159.223.87.50:443</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">SG</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1229ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_30" onclick="copyIp('159.223.87.50:443','copy_30')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="MX" data-proto="HTTP" data-ip="206.135.38.38">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">206.135.38.38:999</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">MX</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1280ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_31" onclick="copyIp('206.135.38.38:999','copy_31')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="US" data-proto="HTTP" data-ip="198.89.96.148">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">198.89.96.148:808</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">US</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1311ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_32" onclick="copyIp('198.89.96.148:808','copy_32')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="US" data-proto="HTTP" data-ip="212.58.132.5">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">212.58.132.5:8888</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">US</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1455ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_33" onclick="copyIp('212.58.132.5:8888','copy_33')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="VN" data-proto="HTTP" data-ip="113.160.132.26">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">113.160.132.26:8080</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">VN</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1505ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_34" onclick="copyIp('113.160.132.26:8080','copy_34')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="KR" data-proto="HTTP" data-ip="1.231.81.166">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">1.231.81.166:3128</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">KR</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1584ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_35" onclick="copyIp('1.231.81.166:3128','copy_35')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="SG" data-proto="HTTP" data-ip="34.87.80.221">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">34.87.80.221:30000</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">SG</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1692ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_36" onclick="copyIp('34.87.80.221:30000','copy_36')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="TH" data-proto="HTTP" data-ip="202.28.194.139">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">202.28.194.139:31280</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">TH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">1868ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_37" onclick="copyIp('202.28.194.139:31280','copy_37')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="FR" data-proto="HTTP" data-ip="62.133.62.187">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">62.133.62.187:1082</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">FR</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2016ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_38" onclick="copyIp('62.133.62.187:1082','copy_38')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="FI" data-proto="HTTP" data-ip="193.29.224.20">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">193.29.224.20:3128</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">FI</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2035ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_39" onclick="copyIp('193.29.224.20:3128','copy_39')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="ZA" data-proto="HTTP" data-ip="4.221.164.109">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">4.221.164.109:9443</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">ZA</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2038ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_40" onclick="copyIp('4.221.164.109:9443','copy_40')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="VE" data-proto="HTTP" data-ip="190.52.108.172">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">190.52.108.172:999</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">VE</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2067ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_41" onclick="copyIp('190.52.108.172:999','copy_41')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="US" data-proto="HTTP" data-ip="92.118.112.32">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">92.118.112.32:1082</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">US</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2214ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_42" onclick="copyIp('92.118.112.32:1082','copy_42')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CA" data-proto="HTTP" data-ip="82.39.154.145">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">82.39.154.145:8080</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CA</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2231ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_43" onclick="copyIp('82.39.154.145:8080','copy_43')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="UZ" data-proto="HTTP" data-ip="195.158.8.123">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">195.158.8.123:3128</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">UZ</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2566ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_44" onclick="copyIp('195.158.8.123:3128','copy_44')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="US" data-proto="HTTP" data-ip="174.137.134.182">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">174.137.134.182:2999</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">US</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2567ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_45" onclick="copyIp('174.137.134.182:2999','copy_45')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="US" data-proto="HTTP" data-ip="159.198.35.187">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">159.198.35.187:1080</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">US</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2610ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_46" onclick="copyIp('159.198.35.187:1080','copy_46')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="KR" data-proto="HTTP" data-ip="169.212.15.161">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">169.212.15.161:5000</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">KR</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2762ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_47" onclick="copyIp('169.212.15.161:5000','copy_47')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="GB" data-proto="HTTP" data-ip="185.221.223.112">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">185.221.223.112:9090</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">GB</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2808ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_48" onclick="copyIp('185.221.223.112:9090','copy_48')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="FR" data-proto="HTTP" data-ip="62.133.62.3">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">62.133.62.3:1082</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">FR</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">2848ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_49" onclick="copyIp('62.133.62.3:1082','copy_49')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="NL" data-proto="HTTP" data-ip="194.186.33.7">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">194.186.33.7:8080</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">NL</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">3070ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_50" onclick="copyIp('194.186.33.7:8080','copy_50')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="US" data-proto="HTTP" data-ip="34.43.46.91">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">34.43.46.91:80</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">US</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">3453ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_51" onclick="copyIp('34.43.46.91:80','copy_51')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="PH" data-proto="HTTP" data-ip="103.167.116.141">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">103.167.116.141:8087</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">PH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">3590ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_52" onclick="copyIp('103.167.116.141:8087','copy_52')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="IN" data-proto="HTTP" data-ip="139.167.218.162">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">139.167.218.162:3127</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">IN</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">3838ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_53" onclick="copyIp('139.167.218.162:3127','copy_53')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr><tr class="proxy-row border-b border-white/5 data-row" data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
+    <td class="py-2.5 px-4 font-mono text-xs text-gray-300">147.161.246.34:10448</td>
+    <td class="py-2.5 px-4"><span class="badge badge-http">HTTP</span></td>
+    <td class="py-2.5 px-4 text-xs">CH</td>
+    <td class="py-2.5 px-4 text-xs text-gray-400">Elite</td>
+    <td class="py-2.5 px-4"><span class="badge badge-speed">4229ms</span></td>
+    <td class="py-2.5 px-4 text-center">
+        <span id="copy_54" onclick="copyIp('147.161.246.34:10448','copy_54')" class="text-gray-500 hover:text-white cursor-pointer text-sm transition-colors" title="Copy">📋</span>
+    </td>
+</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Bottom AdSense Slot -->
+        <div class="ad-container mt-4">
+            <p class="text-gray-600 text-xs">📢 Ad Space — Google AdSense Ready (Bottom)</p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center mt-8 pb-8 text-gray-600 text-xs">
+            <p>⚡ Global Proxy Hub · Powered by GitHub Actions + Cloudflare Pages</p>
+            <p class="mt-1">Data collected from public sources · For educational and research purposes only</p>
+        </footer>
+    </div>
+
+    <script>
+        // 国家列表
+        const COUNTRIES = [...new Set(Array.from(document.querySelectorAll('[data-country]')).map(el => el.getAttribute('data-country')))].sort();
+        const sel = document.getElementById('search_country');
+        COUNTRIES.forEach(c => { const o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o); });
+
+        function filterTable() {
+            const country = document.getElementById('search_country').value.toUpperCase();
+            const protocol = document.getElementById('search_proto').value.toUpperCase();
+            const ipSearch = document.getElementById('search_ip').value.toLowerCase();
+            const rows = document.querySelectorAll('#proxy_table_body tr');
+            let visible = 0;
+
+            rows.forEach(row => {
+                const c = (row.getAttribute('data-country') || '').toUpperCase();
+                const p = (row.getAttribute('data-proto') || '').toUpperCase();
+                const ip = (row.getAttribute('data-ip') || '').toLowerCase();
+
+                const cMatch = country === 'ALL' || c.includes(country);
+                const pMatch = protocol === 'ALL' || p === protocol;
+                const ipMatch = !ipSearch || ip.includes(ipSearch);
+
+                if (cMatch && pMatch && ipMatch) {
+                    row.classList.remove('hidden');
+                    visible++;
+                } else {
+                    row.classList.add('hidden');
+                }
+            });
+
+            document.getElementById('visible-count').textContent = visible;
+        }
+
+        function copyIp(ip, btnId) {
+            navigator.clipboard.writeText(ip).then(() => {
+                const btn = document.getElementById(btnId);
+                const orig = btn.innerHTML;
+                btn.innerHTML = '✓';
+                btn.className = 'text-emerald-400 cursor-pointer text-sm';
+                setTimeout(() => { btn.innerHTML = orig; btn.className = 'text-gray-500 hover:text-white cursor-pointer text-sm'; }, 2000);
+            });
+        }
+
+        // 初始统计
+        document.getElementById('visible-count').textContent = document.querySelectorAll('#proxy_table_body tr:not(.hidden)').length;
+    </script>
+</body>
+</html>
