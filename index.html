@@ -71,15 +71,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 </div></div></header>
 <div class="container">
 <div class="stats-grid">
-<div class="stat-card"><div class="num" style="color:#e65100" id="stat-total">66</div><div class="label">代理节点</div></div>
-<div class="stat-card"><div class="num" id="stat-http">66</div><div class="label">HTTP</div></div>
+<div class="stat-card"><div class="num" style="color:#e65100" id="stat-total">1</div><div class="label">代理节点</div></div>
+<div class="stat-card"><div class="num" id="stat-http">1</div><div class="label">HTTP</div></div>
 <div class="stat-card"><div class="num" style="color:#7c3aed" id="stat-socks5">0</div><div class="label">SOCKS5</div></div>
-<div class="stat-card"><div class="num" style="color:#2e7d32" id="stat-countries">18</div><div class="label">覆盖国家</div></div></div>
+<div class="stat-card"><div class="num" style="color:#2e7d32" id="stat-countries">1</div><div class="label">覆盖国家</div></div></div>
 <div class="ad-box" style="margin-top:25px">AdSense Ready</div>
 <div class="content-wrap">
 <div class="main-area">
 <div class="card">
-<div class="card-title"><span>代理列表</span><span class="update-badge"><span class="dot"></span> 更新时间: 2026-06-15 15:22:24 UTC</span></div>
+<div class="card-title"><span>代理列表</span><span class="update-badge" style="color:#555;font-weight:normal"><span class="dot"></span> 更新时间: 2026-06-15 15:31:09 UTC</span></div>
 <div class="card-body">
 <div class="filter-bar">
 <select id="search_proto" onchange="filterTable()"><option value="ALL">全部协议</option><option value="HTTP">HTTP</option><option value="SOCKS5">SOCKS5</option></select>
@@ -89,472 +89,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 </div>
 <div style="overflow-x:auto"><table class="proxy-table">
 <thead><tr><th>IP:Port</th><th>协议</th><th>国家</th><th>匿名度</th><th>速度</th><th style="text-align:center">复制</th></tr></thead>
-<tbody id="proxy_table_body"><tr data-country="US" data-proto="HTTP" data-ip="34.43.46.91">
-    <td class="ip-cell">34.43.46.91:80</td>
+<tbody id="proxy_table_body"><tr data-country="JP" data-proto="HTTP" data-ip="112.28.149.152">
+    <td class="ip-cell">112.28.149.152:8443</td>
     <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
+    <td>JP</td>
     <td style="color:#888">Elite</td>
-    <td style="color:#555">222ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('34.43.46.91:80','c0')">COPY</span></td>
-</tr><tr data-country="US" data-proto="HTTP" data-ip="34.43.46.91">
-    <td class="ip-cell">34.43.46.91:443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">223ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('34.43.46.91:443','c1')">COPY</span></td>
-</tr><tr data-country="US" data-proto="HTTP" data-ip="159.198.35.187">
-    <td class="ip-cell">159.198.35.187:1080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">443ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('159.198.35.187:1080','c2')">COPY</span></td>
-</tr><tr data-country="HK" data-proto="HTTP" data-ip="160.238.65.2">
-    <td class="ip-cell">160.238.65.2:3128</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>HK</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">743ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('160.238.65.2:3128','c3')">COPY</span></td>
-</tr><tr data-country="DE" data-proto="HTTP" data-ip="191.40.5.0">
-    <td class="ip-cell">191.40.5.0:8888</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>DE</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">766ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('191.40.5.0:8888','c4')">COPY</span></td>
-</tr><tr data-country="US" data-proto="HTTP" data-ip="131.153.163.28">
-    <td class="ip-cell">131.153.163.28:32074</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">773ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('131.153.163.28:32074','c5')">COPY</span></td>
-</tr><tr data-country="RU" data-proto="HTTP" data-ip="216.57.107.50">
-    <td class="ip-cell">216.57.107.50:8445</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>RU</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">789ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('216.57.107.50:8445','c6')">COPY</span></td>
-</tr><tr data-country="NL" data-proto="HTTP" data-ip="45.88.174.195">
-    <td class="ip-cell">45.88.174.195:8080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>NL</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">799ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('45.88.174.195:8080','c7')">COPY</span></td>
-</tr><tr data-country="EE" data-proto="HTTP" data-ip="37.49.224.15">
-    <td class="ip-cell">37.49.224.15:3128</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>EE</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">804ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('37.49.224.15:3128','c8')">COPY</span></td>
-</tr><tr data-country="GB" data-proto="HTTP" data-ip="138.124.114.42">
-    <td class="ip-cell">138.124.114.42:7443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>GB</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">810ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('138.124.114.42:7443','c9')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11662</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">813ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11662','c10')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11555</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">816ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11555','c11')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11841</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">819ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11841','c12')">COPY</span></td>
-</tr><tr data-country="GB" data-proto="HTTP" data-ip="77.110.116.93">
-    <td class="ip-cell">77.110.116.93:7443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>GB</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">821ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('77.110.116.93:7443','c13')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11153</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">827ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11153','c14')">COPY</span></td>
-</tr><tr data-country="NL" data-proto="HTTP" data-ip="79.137.205.130">
-    <td class="ip-cell">79.137.205.130:7443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>NL</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">834ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('79.137.205.130:7443','c15')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11693</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">835ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11693','c16')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11530</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">841ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11530','c17')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:10134</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">841ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:10134','c18')">COPY</span></td>
-</tr><tr data-country="DE" data-proto="HTTP" data-ip="91.107.168.255">
-    <td class="ip-cell">91.107.168.255:82</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>DE</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">842ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('91.107.168.255:82','c19')">COPY</span></td>
-</tr><tr data-country="GB" data-proto="HTTP" data-ip="213.165.42.185">
-    <td class="ip-cell">213.165.42.185:7443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>GB</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">844ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('213.165.42.185:7443','c20')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">844ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:443','c21')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11629</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">846ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11629','c22')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:10448</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">852ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:10448','c23')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11637</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">856ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11637','c24')">COPY</span></td>
-</tr><tr data-country="US" data-proto="HTTP" data-ip="150.241.116.167">
-    <td class="ip-cell">150.241.116.167:443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">856ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('150.241.116.167:443','c25')">COPY</span></td>
-</tr><tr data-country="HK" data-proto="HTTP" data-ip="149.104.4.88">
-    <td class="ip-cell">149.104.4.88:10809</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>HK</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">857ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('149.104.4.88:10809','c26')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:8800</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">860ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:8800','c27')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:10152</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">862ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:10152','c28')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">865ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11080','c29')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:10678</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">869ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:10678','c30')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11745</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">871ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11745','c31')">COPY</span></td>
-</tr><tr data-country="CH" data-proto="HTTP" data-ip="147.161.246.34">
-    <td class="ip-cell">147.161.246.34:11712</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">893ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('147.161.246.34:11712','c32')">COPY</span></td>
-</tr><tr data-country="GB" data-proto="HTTP" data-ip="85.192.61.93">
-    <td class="ip-cell">85.192.61.93:7443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>GB</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">962ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('85.192.61.93:7443','c33')">COPY</span></td>
-</tr><tr data-country="SG" data-proto="HTTP" data-ip="47.79.119.13">
-    <td class="ip-cell">47.79.119.13:8080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>SG</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">975ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('47.79.119.13:8080','c34')">COPY</span></td>
-</tr><tr data-country="GB" data-proto="HTTP" data-ip="91.186.213.124">
-    <td class="ip-cell">91.186.213.124:1081</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>GB</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">981ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('91.186.213.124:1081','c35')">COPY</span></td>
-</tr><tr data-country="TR" data-proto="HTTP" data-ip="95.3.69.222">
-    <td class="ip-cell">95.3.69.222:8080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>TR</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1016ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('95.3.69.222:8080','c36')">COPY</span></td>
-</tr><tr data-country="RU" data-proto="HTTP" data-ip="82.114.228.67">
-    <td class="ip-cell">82.114.228.67:1080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>RU</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1033ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('82.114.228.67:1080','c37')">COPY</span></td>
-</tr><tr data-country="HK" data-proto="HTTP" data-ip="152.32.132.190">
-    <td class="ip-cell">152.32.132.190:7890</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>HK</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1080ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('152.32.132.190:7890','c38')">COPY</span></td>
-</tr><tr data-country="RU" data-proto="HTTP" data-ip="185.200.188.234">
-    <td class="ip-cell">185.200.188.234:10001</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>RU</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1090ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('185.200.188.234:10001','c39')">COPY</span></td>
-</tr><tr data-country="TR" data-proto="HTTP" data-ip="139.28.49.233">
-    <td class="ip-cell">139.28.49.233:8080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>TR</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1112ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('139.28.49.233:8080','c40')">COPY</span></td>
-</tr><tr data-country="KR" data-proto="HTTP" data-ip="169.212.15.161">
-    <td class="ip-cell">169.212.15.161:5000</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>KR</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1186ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('169.212.15.161:5000','c41')">COPY</span></td>
-</tr><tr data-country="NL" data-proto="HTTP" data-ip="194.186.33.7">
-    <td class="ip-cell">194.186.33.7:8080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>NL</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1198ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('194.186.33.7:8080','c42')">COPY</span></td>
-</tr><tr data-country="KR" data-proto="HTTP" data-ip="1.231.81.166">
-    <td class="ip-cell">1.231.81.166:3128</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>KR</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1235ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('1.231.81.166:3128','c43')">COPY</span></td>
-</tr><tr data-country="US" data-proto="HTTP" data-ip="209.141.46.220">
-    <td class="ip-cell">209.141.46.220:9091</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1306ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('209.141.46.220:9091','c44')">COPY</span></td>
-</tr><tr data-country="SE" data-proto="HTTP" data-ip="89.127.207.174">
-    <td class="ip-cell">89.127.207.174:18080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>SE</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1642ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('89.127.207.174:18080','c45')">COPY</span></td>
-</tr><tr data-country="ID" data-proto="HTTP" data-ip="103.189.197.43">
-    <td class="ip-cell">103.189.197.43:7778</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>ID</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1656ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('103.189.197.43:7778','c46')">COPY</span></td>
-</tr><tr data-country="IN" data-proto="HTTP" data-ip="164.92.165.209">
-    <td class="ip-cell">164.92.165.209:18080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>IN</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1707ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('164.92.165.209:18080','c47')">COPY</span></td>
-</tr><tr data-country="US" data-proto="HTTP" data-ip="131.153.163.222">
-    <td class="ip-cell">131.153.163.222:31887</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1714ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('131.153.163.222:31887','c48')">COPY</span></td>
-</tr><tr data-country="US" data-proto="HTTP" data-ip="174.138.162.245">
-    <td class="ip-cell">174.138.162.245:33045</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1746ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('174.138.162.245:33045','c49')">COPY</span></td>
-</tr><tr data-country="AU" data-proto="HTTP" data-ip="192.9.182.6">
-    <td class="ip-cell">192.9.182.6:20172</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>AU</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1749ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('192.9.182.6:20172','c50')">COPY</span></td>
-</tr><tr data-country="NL" data-proto="HTTP" data-ip="45.84.222.25">
-    <td class="ip-cell">45.84.222.25:1080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>NL</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1752ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('45.84.222.25:1080','c51')">COPY</span></td>
-</tr><tr data-country="TH" data-proto="HTTP" data-ip="202.28.194.139">
-    <td class="ip-cell">202.28.194.139:31280</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>TH</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1776ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('202.28.194.139:31280','c52')">COPY</span></td>
-</tr><tr data-country="HK" data-proto="HTTP" data-ip="165.154.7.156">
-    <td class="ip-cell">165.154.7.156:8888</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>HK</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1819ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('165.154.7.156:8888','c53')">COPY</span></td>
-</tr><tr data-country="RU" data-proto="HTTP" data-ip="84.47.150.125">
-    <td class="ip-cell">84.47.150.125:1080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>RU</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1828ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('84.47.150.125:1080','c54')">COPY</span></td>
-</tr><tr data-country="VN" data-proto="HTTP" data-ip="113.160.132.26">
-    <td class="ip-cell">113.160.132.26:8080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>VN</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1897ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('113.160.132.26:8080','c55')">COPY</span></td>
-</tr><tr data-country="AU" data-proto="HTTP" data-ip="82.97.247.37">
-    <td class="ip-cell">82.97.247.37:80</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>AU</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">1923ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('82.97.247.37:80','c56')">COPY</span></td>
-</tr><tr data-country="US" data-proto="HTTP" data-ip="150.251.146.11">
-    <td class="ip-cell">150.251.146.11:9443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">2092ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('150.251.146.11:9443','c57')">COPY</span></td>
-</tr><tr data-country="DE" data-proto="HTTP" data-ip="85.234.100.149">
-    <td class="ip-cell">85.234.100.149:8080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>DE</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">2168ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('85.234.100.149:8080','c58')">COPY</span></td>
-</tr><tr data-country="DE" data-proto="HTTP" data-ip="91.107.182.124">
-    <td class="ip-cell">91.107.182.124:82</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>DE</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">2191ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('91.107.182.124:82','c59')">COPY</span></td>
-</tr><tr data-country="CN" data-proto="HTTP" data-ip="139.198.113.42">
-    <td class="ip-cell">139.198.113.42:10023</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>CN</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">2201ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('139.198.113.42:10023','c60')">COPY</span></td>
-</tr><tr data-country="RU" data-proto="HTTP" data-ip="95.140.154.156">
-    <td class="ip-cell">95.140.154.156:1080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>RU</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">2225ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('95.140.154.156:1080','c61')">COPY</span></td>
-</tr><tr data-country="RU" data-proto="HTTP" data-ip="95.165.152.252">
-    <td class="ip-cell">95.165.152.252:3128</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>RU</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">2773ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('95.165.152.252:3128','c62')">COPY</span></td>
-</tr><tr data-country="US" data-proto="HTTP" data-ip="212.58.132.5">
-    <td class="ip-cell">212.58.132.5:8888</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>US</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">2948ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('212.58.132.5:8888','c63')">COPY</span></td>
-</tr><tr data-country="DE" data-proto="HTTP" data-ip="217.154.155.115">
-    <td class="ip-cell">217.154.155.115:8080</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>DE</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">3519ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('217.154.155.115:8080','c64')">COPY</span></td>
-</tr><tr data-country="GB" data-proto="HTTP" data-ip="81.168.119.85">
-    <td class="ip-cell">81.168.119.85:443</td>
-    <td><span class="proto-badge badge-http">HTTP</span></td>
-    <td>GB</td>
-    <td style="color:#888">Elite</td>
-    <td style="color:#555">3719ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('81.168.119.85:443','c65')">COPY</span></td>
+    <td style="color:#555">3671ms</td>
+    <td style="text-align:center"><span class="copy-btn" onclick="cip('112.28.149.152:8443','c0')">📋</span></td>
 </tr></tbody>
 </table></div></div>
 <div class="pagination">
-<div class="info">共 <span id="total-count">66</span> 条</div>
+<div class="info">共 <span id="total-count">1</span> 条</div>
 <div class="pages">
 <button id="prevBtn" onclick="prevPage()">◀ 上一页</button>
 <span class="page-info" id="page-num">1 / 1</span>
@@ -563,27 +108,43 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <div class="sidebar">
 <div class="side-card">
 <div class="side-title">数据统计</div>
-<div class="side-item"><span class="key">总节点</span><span class="val" id="s-total">66</span></div>
-<div class="side-item"><span class="key">HTTP</span><span class="val" id="s-http">66</span></div>
+<div class="side-item"><span class="key">总节点</span><span class="val" id="s-total">1</span></div>
+<div class="side-item"><span class="key">HTTP</span><span class="val" id="s-http">1</span></div>
 <div class="side-item"><span class="key">SOCKS5</span><span class="val" id="s-socks5">0</span></div>
-<div class="side-item"><span class="key">国家</span><span class="val" id="s-countries">18</span></div>
+<div class="side-item"><span class="key">国家</span><span class="val" id="s-countries">1</span></div>
 <div class="side-item"><span class="key">更新</span><span class="val">30min</span></div></div>
+<div class="side-card ad-box" style="min-height:250px;display:flex;align-items:center;justify-content:center;font-size:12px;margin-bottom:15px">广告位：336x280 方形梓摸牌</div>
 <div class="side-card" id="api-docs">
 <div class="side-title">API 接口</div>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/proxies.json</span></div>
+<div class="api-desc">全量代理数据，按速度升序，支持 CORS</div>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/http.json</span></div>
+<div class="api-desc">仅 HTTP/HTTPS 协议代理</div>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/socks5.json</span></div>
-</div></div></div></div>
+<div class="api-desc">仅 SOCKS5 协议代理</div>
+<div style="margin-top:10px;padding-top:10px;border-top:1px solid #eee;font-size:12px;color:#666">
+<div style="font-weight:600;color:#333;margin-bottom:6px">📖 调用示例</div>
+<div style="background:#f8f9fa;border-radius:4px;padding:8px;margin-bottom:6px;font-family:monospace;font-size:11px;line-height:1.6">
+<span style="color:#888"># cURL</span><br>curl -s <span style="color:#d63384">https://free-proxy-hub.pages.dev/api/proxies.json</span> | jq .[:2]
+</div>
+<div style="background:#f8f9fa;border-radius:4px;padding:8px;margin-bottom:6px;font-family:monospace;font-size:11px;line-height:1.6">
+<span style="color:#888"># Python</span><br>import requests<br>data = requests.get("https://free-proxy-hub.pages.dev/api/proxies.json").json()<br>for p in data[:5]: print(p["ip_port"], p["protocol"], p["speed"], "ms")
+</div>
+<div style="background:#f8f9fa;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;line-height:1.6">
+<span style="color:#888"># JavaScript</span><br>fetch("https://free-proxy-hub.pages.dev/api/proxies.json")<br>&nbsp;&nbsp;.then(r => r.json())<br>&nbsp;&nbsp;.then(data => console.log(data.slice(0,3)))</div>
+</div>
+<div class="ad-box" style="max-width:728px;margin:20px auto;min-height:90px;display:flex;align-items:center;justify-content:center;font-size:12px">广告位：728x90 底部横幅</div>
+</div>
 <footer class="footer">
-<div class="container"><p>Global Proxy Hub - GitHub Actions + Cloudflare Pages</p></div></footer>
+<div class="container"><p>Global Proxy Hub — 免费高匿代理 IP 资源站 | 数据每 30 分钟自动更新 | Powered by GitHub Actions + Cloudflare Pages</p></div></footer>
 <script>
-const PS=30;let cp=1,ar=[];
+const PS=20;let cp=1,ar=[];
 function ip(){ar=Array.from(document.querySelectorAll("#proxy_table_body tr"));rp(1);}
 function rp(p){cp=p;const s=(p-1)*PS,e=s+PS,tp=Math.ceil(ar.length/PS)||1;ar.forEach((r,i)=>{if(i>=s&&i<e)r.classList.remove("hidden");else r.classList.add("hidden")});document.getElementById("page-num").textContent=p+"/"+tp;document.getElementById("prevBtn").disabled=p<=1;document.getElementById("nextBtn").disabled=p>=tp;}
 function pp(){if(cp>1)rp(cp-1);}function np(){const t=Math.ceil(ar.length/PS);if(cp<t)rp(cp+1);}
 function ft(){const c=document.getElementById("search_country").value.toUpperCase(),p2=document.getElementById("search_proto").value.toUpperCase(),iq=document.getElementById("search_ip").value.toLowerCase(),s=document.getElementById("sort_speed").value;let m=ar.filter(r=>{const c2=(r.getAttribute("data-country")||"").toUpperCase(),p3=(r.getAttribute("data-proto")||"").toUpperCase(),ip3=(r.getAttribute("data-ip")||"").toLowerCase();return(c==="ALL"||c2.includes(c))&&(p2==="ALL"||p3===p2)&&(!iq||ip3.includes(iq))});if(s==="desc")m.reverse();const tb=document.getElementById("proxy_table_body");m.forEach(r=>tb.appendChild(r));ar=m;rp(1);document.getElementById("total-count").textContent=ar.length;us(m);}
 function us(rs){document.getElementById("stat-total").textContent=rs.length;document.getElementById("stat-http").textContent=rs.filter(r=>r.getAttribute("data-proto")==="HTTP").length;document.getElementById("stat-socks5").textContent=rs.filter(r=>r.getAttribute("data-proto")==="SOCKS5").length;document.getElementById("stat-countries").textContent=new Set(rs.map(r=>r.getAttribute("data-country"))).size;}
-function cip(ip,bid){navigator.clipboard.writeText(ip).then(()=>{const b=document.getElementById(bid);b.innerHTML="OK";setTimeout(()=>{b.innerHTML="COPY"},2000)});}
+function cip(ip,bid){navigator.clipboard.writeText(ip).then(()=>{const b=document.getElementById(bid);b.innerHTML="✅";setTimeout(()=>{b.innerHTML="📋"},2000)});}
 window.onload=function(){ip();const cs=[...new Set(ar.map(r=>r.getAttribute("data-country")))].sort();const sl=document.getElementById("search_country");cs.forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;sl.appendChild(o)});us(ar);};
 </script>
 </body>

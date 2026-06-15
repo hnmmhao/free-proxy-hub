@@ -164,7 +164,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <div class="content-wrap">
 <div class="main-area">
 <div class="card">
-<div class="card-title"><span>代理列表</span><span class="update-badge"><span class="dot"></span> 更新时间: {{UPDATE_TIME}} UTC</span></div>
+<div class="card-title"><span>代理列表</span><span class="update-badge" style="color:#555;font-weight:normal"><span class="dot"></span> 更新时间: {{UPDATE_TIME}} UTC</span></div>
 <div class="card-body">
 <div class="filter-bar">
 <select id="search_proto" onchange="filterTable()"><option value="ALL">全部协议</option><option value="HTTP">HTTP</option><option value="SOCKS5">SOCKS5</option></select>
@@ -191,22 +191,38 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <div class="side-item"><span class="key">SOCKS5</span><span class="val" id="s-socks5">0</span></div>
 <div class="side-item"><span class="key">国家</span><span class="val" id="s-countries">0</span></div>
 <div class="side-item"><span class="key">更新</span><span class="val">30min</span></div></div>
+<div class="side-card ad-box" style="min-height:250px;display:flex;align-items:center;justify-content:center;font-size:12px;margin-bottom:15px">广告位：336x280 方形梓摸牌</div>
 <div class="side-card" id="api-docs">
 <div class="side-title">API 接口</div>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/proxies.json</span></div>
+<div class="api-desc">全量代理数据，按速度升序，支持 CORS</div>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/http.json</span></div>
+<div class="api-desc">仅 HTTP/HTTPS 协议代理</div>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/socks5.json</span></div>
-</div></div></div></div>
+<div class="api-desc">仅 SOCKS5 协议代理</div>
+<div style="margin-top:10px;padding-top:10px;border-top:1px solid #eee;font-size:12px;color:#666">
+<div style="font-weight:600;color:#333;margin-bottom:6px">📖 调用示例</div>
+<div style="background:#f8f9fa;border-radius:4px;padding:8px;margin-bottom:6px;font-family:monospace;font-size:11px;line-height:1.6">
+<span style="color:#888"># cURL</span><br>curl -s <span style="color:#d63384">https://free-proxy-hub.pages.dev/api/proxies.json</span> | jq .[:2]
+</div>
+<div style="background:#f8f9fa;border-radius:4px;padding:8px;margin-bottom:6px;font-family:monospace;font-size:11px;line-height:1.6">
+<span style="color:#888"># Python</span><br>import requests<br>data = requests.get("https://free-proxy-hub.pages.dev/api/proxies.json").json()<br>for p in data[:5]: print(p["ip_port"], p["protocol"], p["speed"], "ms")
+</div>
+<div style="background:#f8f9fa;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;line-height:1.6">
+<span style="color:#888"># JavaScript</span><br>fetch("https://free-proxy-hub.pages.dev/api/proxies.json")<br>&nbsp;&nbsp;.then(r => r.json())<br>&nbsp;&nbsp;.then(data => console.log(data.slice(0,3)))</div>
+</div>
+<div class="ad-box" style="max-width:728px;margin:20px auto;min-height:90px;display:flex;align-items:center;justify-content:center;font-size:12px">广告位：728x90 底部横幅</div>
+</div>
 <footer class="footer">
-<div class="container"><p>Global Proxy Hub - GitHub Actions + Cloudflare Pages</p></div></footer>
+<div class="container"><p>Global Proxy Hub — 免费高匿代理 IP 资源站 | 数据每 30 分钟自动更新 | Powered by GitHub Actions + Cloudflare Pages</p></div></footer>
 <script>
-const PS=30;let cp=1,ar=[];
+const PS=20;let cp=1,ar=[];
 function ip(){ar=Array.from(document.querySelectorAll("#proxy_table_body tr"));rp(1);}
 function rp(p){cp=p;const s=(p-1)*PS,e=s+PS,tp=Math.ceil(ar.length/PS)||1;ar.forEach((r,i)=>{if(i>=s&&i<e)r.classList.remove("hidden");else r.classList.add("hidden")});document.getElementById("page-num").textContent=p+"/"+tp;document.getElementById("prevBtn").disabled=p<=1;document.getElementById("nextBtn").disabled=p>=tp;}
 function pp(){if(cp>1)rp(cp-1);}function np(){const t=Math.ceil(ar.length/PS);if(cp<t)rp(cp+1);}
 function ft(){const c=document.getElementById("search_country").value.toUpperCase(),p2=document.getElementById("search_proto").value.toUpperCase(),iq=document.getElementById("search_ip").value.toLowerCase(),s=document.getElementById("sort_speed").value;let m=ar.filter(r=>{const c2=(r.getAttribute("data-country")||"").toUpperCase(),p3=(r.getAttribute("data-proto")||"").toUpperCase(),ip3=(r.getAttribute("data-ip")||"").toLowerCase();return(c==="ALL"||c2.includes(c))&&(p2==="ALL"||p3===p2)&&(!iq||ip3.includes(iq))});if(s==="desc")m.reverse();const tb=document.getElementById("proxy_table_body");m.forEach(r=>tb.appendChild(r));ar=m;rp(1);document.getElementById("total-count").textContent=ar.length;us(m);}
 function us(rs){document.getElementById("stat-total").textContent=rs.length;document.getElementById("stat-http").textContent=rs.filter(r=>r.getAttribute("data-proto")==="HTTP").length;document.getElementById("stat-socks5").textContent=rs.filter(r=>r.getAttribute("data-proto")==="SOCKS5").length;document.getElementById("stat-countries").textContent=new Set(rs.map(r=>r.getAttribute("data-country"))).size;}
-function cip(ip,bid){navigator.clipboard.writeText(ip).then(()=>{const b=document.getElementById(bid);b.innerHTML="OK";setTimeout(()=>{b.innerHTML="COPY"},2000)});}
+function cip(ip,bid){navigator.clipboard.writeText(ip).then(()=>{const b=document.getElementById(bid);b.innerHTML="✅";setTimeout(()=>{b.innerHTML="📋"},2000)});}
 window.onload=function(){ip();const cs=[...new Set(ar.map(r=>r.getAttribute("data-country")))].sort();const sl=document.getElementById("search_country");cs.forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;sl.appendChild(o)});us(ar);};
 </script>
 </body>
@@ -217,7 +233,7 @@ BODY_ROW_TEMPLATE = """<tr data-country="{country}" data-proto="{protocol}" data
     <td>{country}</td>
     <td style="color:#888">{anonymity}</td>
     <td style="color:#555">{speed}ms</td>
-    <td style="text-align:center"><span class="copy-btn" onclick="cip('{ip_port}','c{idx}')">COPY</span></td>
+    <td style="text-align:center"><span class="copy-btn" onclick="cip('{ip_port}','c{idx}')">📋</span></td>
 </tr>"""
 
 
