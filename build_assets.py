@@ -188,6 +188,60 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
             <p class="text-gray-600 text-xs">📢 Ad Space — Google AdSense Ready (Bottom)</p>
         </div>
 
+        <!-- API Documentation -->
+        <div class="glass-card rounded-xl p-6 mt-6 glow" id="api-docs">
+            <h2 class="text-xl font-semibold text-white mb-4">🔌 RESTful API 接口文档</h2>
+            <p class="text-gray-400 text-sm mb-5">所有接口返回 JSON 格式数据，支持跨域（CORS），可直接在前端或后端调用。</p>
+            <div class="grid gap-4 md:grid-cols-3">
+                <div class="bg-white/[0.03] rounded-lg p-4 border border-white/5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-mono bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded">GET</span>
+                        <code class="text-xs text-blue-400 font-mono truncate">/api/proxies.json</code>
+                    </div>
+                    <p class="text-gray-500 text-xs mb-2">全量代理数据，按速度升序排列</p>
+                    <button onclick="copyText(window.location.origin + '/api/proxies.json', 'cp1')" id="cp1" class="text-xs text-gray-600 hover:text-white transition-colors">📋 复制 URL</button>
+                </div>
+                <div class="bg-white/[0.03] rounded-lg p-4 border border-white/5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-mono bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded">GET</span>
+                        <code class="text-xs text-blue-400 font-mono truncate">/api/http.json</code>
+                    </div>
+                    <p class="text-gray-500 text-xs mb-2">仅 HTTP 协议代理</p>
+                    <button onclick="copyText(window.location.origin + '/api/http.json', 'cp2')" id="cp2" class="text-xs text-gray-600 hover:text-white transition-colors">📋 复制 URL</button>
+                </div>
+                <div class="bg-white/[0.03] rounded-lg p-4 border border-white/5">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="text-xs font-mono bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded">GET</span>
+                        <code class="text-xs text-blue-400 font-mono truncate">/api/socks5.json</code>
+                    </div>
+                    <p class="text-gray-500 text-xs mb-2">仅 SOCKS5 协议代理</p>
+                    <button onclick="copyText(window.location.origin + '/api/socks5.json', 'cp3')" id="cp3" class="text-xs text-gray-600 hover:text-white transition-colors">📋 复制 URL</button>
+                </div>
+            </div>
+            <h3 class="text-sm font-semibold text-gray-300 mt-6 mb-3">📖 调用示例</h3>
+            <div class="grid gap-3 md:grid-cols-3">
+                <div class="bg-black/40 rounded-lg p-3">
+                    <div class="text-xs text-gray-500 mb-2">cURL</div>
+                    <pre class="text-xs text-gray-300 font-mono leading-relaxed whitespace-pre-wrap">curl -s https://free-proxy-hub.pages.dev/api/proxies.json | jq</pre>
+                    <button onclick="copyText('curl -s https://free-proxy-hub.pages.dev/api/proxies.json | jq', 'cp4')" id="cp4" class="text-xs text-gray-600 hover:text-white transition-colors mt-2">📋 复制</button>
+                </div>
+                <div class="bg-black/40 rounded-lg p-3">
+                    <div class="text-xs text-gray-500 mb-2">Python</div>
+                    <pre class="text-xs text-gray-300 font-mono leading-relaxed whitespace-pre-wrap">import requests
+data = requests.get("https://free-proxy-hub.pages.dev/api/proxies.json").json()
+for p in data[:5]: print(p["ip_port"])</pre>
+                    <button onclick='copyText("import requests\ndata = requests.get(\"https://free-proxy-hub.pages.dev/api/proxies.json\").json()\nfor p in data[:5]: print(p[\"ip_port\"])", "cp5")' id="cp5" class="text-xs text-gray-600 hover:text-white transition-colors mt-2">📋 复制</button>
+                </div>
+                <div class="bg-black/40 rounded-lg p-3">
+                    <div class="text-xs text-gray-500 mb-2">JavaScript</div>
+                    <pre class="text-xs text-gray-300 font-mono leading-relaxed whitespace-pre-wrap">fetch("https://free-proxy-hub.pages.dev/api/proxies.json")
+  .then(r => r.json())
+  .then(data => console.log(data))</pre>
+                    <button onclick='copyText("fetch(\"https://free-proxy-hub.pages.dev/api/proxies.json\").then(r => r.json()).then(data => console.log(data))", "cp6")' id="cp6" class="text-xs text-gray-600 hover:text-white transition-colors mt-2">📋 复制</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <footer class="text-center mt-8 pb-8 text-gray-600 text-xs">
             <p>⚡ Global Proxy Hub · Powered by GitHub Actions + Cloudflare Pages</p>
@@ -235,6 +289,16 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
                 btn.innerHTML = '✓';
                 btn.className = 'text-emerald-400 cursor-pointer text-sm';
                 setTimeout(() => { btn.innerHTML = orig; btn.className = 'text-gray-500 hover:text-white cursor-pointer text-sm'; }, 2000);
+            });
+        }
+
+
+        function copyText(text, btnId) {
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById(btnId);
+                const orig = btn.innerHTML;
+                btn.innerHTML = '✓ Copied';
+                setTimeout(() => { btn.innerHTML = orig; }, 2000);
             });
         }
 
