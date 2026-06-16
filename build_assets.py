@@ -283,6 +283,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <div class="sidebar api-desc" data-i18n="api_http_desc">仅 HTTP/HTTPS 协议代理</div>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/socks5.json</span></div>
 <div class="sidebar api-desc" data-i18n="api_socks_desc">仅 SOCKS5 协议代理</div>
+<div style="margin-top:10px;padding-top:10px;border-top:1px solid #eee;font-size:12px;color:#666">
+<div style="font-weight:600;color:#333;margin-bottom:6px">📖 调用示例</div>
+<div style="background:#f8f9fa;border-radius:4px;padding:8px;margin-bottom:6px;font-family:monospace;font-size:11px;line-height:1.6">
+<span style="color:#888"># cURL</span><br>curl -s <span style="color:#d63384">https://free-proxy-hub.pages.dev/api/proxies.json</span> | jq .[:2]
+</div>
+<div style="background:#f8f9fa;border-radius:4px;padding:8px;margin-bottom:6px;font-family:monospace;font-size:11px;line-height:1.6">
+<span style="color:#888"># Python</span><br>import requests<br>data = requests.get("<span style="color:#d63384">https://free-proxy-hub.pages.dev/api/proxies.json</span>").json()<br>for p in data[:5]: print(p["ip_port"], p["protocol"], p["speed"], "ms")
+</div>
+<div style="background:#f8f9fa;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;line-height:1.6">
+<span style="color:#888"># JavaScript</span><br>fetch("<span style="color:#d63384">https://free-proxy-hub.pages.dev/api/proxies.json</span>")<br>&nbsp;&nbsp;.then(r => r.json())<br>&nbsp;&nbsp;.then(data => console.log(data.slice(0,3)))</div>
+</div>
 </section>
 
 <section class="ad-box" style="display:none" data-i18n="ad_336">广告位：336x280 方形模块</section>
