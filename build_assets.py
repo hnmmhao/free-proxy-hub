@@ -266,41 +266,36 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 </div>
 
 <aside class="sidebar">
-<div class="side-card">
+<section class="side-card" id="stats-sidebar">
 <h3 class="side-title" data-i18n="sidebar_stats_title">数据统计</h3>
 <div class="side-item"><span class="key" data-i18n="sidebar_total">总节点</span><span class="val" id="s-total">{{NODE_COUNT}}</span></div>
 <div class="side-item"><span class="key">HTTP</span><span class="val" id="s-http">0</span></div>
 <div class="side-item"><span class="key">SOCKS5</span><span class="val" id="s-socks5">0</span></div>
 <div class="side-item"><span class="key" data-i18n="sidebar_countries">国家</span><span class="val" id="s-countries">0</span></div>
-<div class="side-item"><span class="key" data-i18n="sidebar_update">更新</span><span class="val">30min</span></div></div>
-<div class="side-card ad-box" style="min-height:250px;display:none;align-items:center;justify-content:center;font-size:12px;margin-bottom:15px" data-i18n="ad_336">广告位：336x280 方形模块</div>
-<div class="side-card" id="api-docs">
-<h3 class="side-title" data-i18n="sidebar_api_title">API 接口</h3>
-<div class="api-endpoint"><span class="method">GET</span><span class="url">/api/proxies.json</span></div>
-<div class="api-desc" data-i18n="api_proxies_desc">全量代理数据，按速度升序，支持 CORS</div>
-<div class="api-endpoint"><span class="method">GET</span><span class="url">/api/http.json</span></div>
-<div class="api-desc" data-i18n="api_http_desc">仅 HTTP/HTTPS 协议代理</div>
-<div class="api-endpoint"><span class="method">GET</span><span class="url">/api/socks5.json</span></div>
-<div class="api-desc" data-i18n="api_socks_desc">仅 SOCKS5 协议代理</div>
-<div style="margin-top:10px;padding-top:10px;border-top:1px solid #eee;font-size:12px;color:#666">
-<div style="font-weight:600;color:#333;margin-bottom:6px" data-i18n="api_examples">📋 调用示例</div>
-<div style="background:#f8f9fa;border-radius:4px;padding:8px;margin-bottom:6px;font-family:monospace;font-size:11px;line-height:1.6">
-<span style="color:#888"># cURL</span><br>curl -s <span style="color:#d63384">https://free-proxy-hub.pages.dev/api/proxies.json</span> | jq .[:2]
-</div>
-<div style="background:#f8f9fa;border-radius:4px;padding:8px;margin-bottom:6px;font-family:monospace;font-size:11px;line-height:1.6">
-<span style="color:#888"># Python</span><br>import requests<br>data = requests.get("https://free-proxy-hub.pages.dev/api/proxies.json").json()<br>for p in data[:5]: print(p["ip_port"], p["protocol"], p["speed"], "ms")
-</div>
-<div style="background:#f8f9fa;border-radius:4px;padding:8px;font-family:monospace;font-size:11px;line-height:1.6">
-<span style="color:#888"># JavaScript</span><br>fetch("https://free-proxy-hub.pages.dev/api/proxies.json")<br>&nbsp;&nbsp;.then(r => r.json())<br>&nbsp;&nbsp;.then(data => console.log(data.slice(0,3)))</div>
-</div>
-</div>
-</div>
+<div class="side-item"><span class="key" data-i18n="sidebar_update">更新</span><span class="val">30min</span></div>
 </section>
 
-<section class="ad-box" style="display:none" data-i18n="ad_728">广告位：728x90 底部横幅</div>
+<section class="side-card" id="api-docs">
+<h3 class="side-title" data-i18n="sidebar_api_title">API 接口</h3>
+<div class="api-endpoint"><span class="method">GET</span><span class="url">/api/proxies.json</span></div>
+<div class="sidebar api-desc" data-i18n="api_proxies_desc">全量代理数据，按速度升序，支持 CORS</div>
+<div class="api-endpoint"><span class="method">GET</span><span class="url">/api/http.json</span></div>
+<div class="sidebar api-desc" data-i18n="api_http_desc">仅 HTTP/HTTPS 协议代理</div>
+<div class="api-endpoint"><span class="method">GET</span><span class="url">/api/socks5.json</span></div>
+<div class="sidebar api-desc" data-i18n="api_socks_desc">仅 SOCKS5 协议代理</div>
+</section>
+
+<section class="ad-box" style="display:none" data-i18n="ad_336">广告位：336x280 方形模块</section>
+</aside>
+</div>
+</main>
 
 <footer class="footer">
-<div class="container"><p data-i18n="footer_text">Global Proxy Hub — 免费高匿代理 IP 资源站 | 数据每 30 分钟自动更新</p></div></footer>
+<div class="container">
+<div data-i18n="footer_text">Global Proxy Hub — 免费高匿代理 IP 资源站 | 数据每 30 分钟自动更新</div>
+</div>
+</footer>
+
 <script>
 // ========== i18n ==========
 const I18N={
@@ -389,36 +384,29 @@ let filteredData = [];
 
 function renderTable() {
     if (!filteredData.length) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#999">暂无数据</td></tr>';
-        document.getElementById("total-count").textContent = "0";
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#999" data-i18n="no_data">暂无数据</td></tr>';
         return;
     }
     const start = (currentPage - 1) * pageSize;
     const end = Math.min(start + pageSize, filteredData.length);
-    const pageData = filteredData.slice(start, end);
     let html = "";
-    for (let i = 0; i < pageData.length; i++) {
-        const p = pageData[i];
-        const ipOnly = p.ip_port.split(":")[0];
-        const badgeCls = p.protocol === "HTTP" ? "badge-http" : "badge-socks5";
-        html += "<tr><td class=\"ip-cell\">" + p.ip_port + "</td><td><span class=\"proto-badge " + badgeCls + "\">" + p.protocol + "</span></td><td>" + p.country + "</td><td>" + (p.anonymity || "Elite") + "</td><td>" + p.speed + "ms</td><td><span class=\"copy-btn\" onclick=\"copyProxy(this,'" + p.ip_port + "')\">📋</span></td></tr>";
+    for (let i = start; i < end; i++) {
+        const p = filteredData[i];
+        const badgeClass = p.protocol === "HTTP" ? "badge-http" : "badge-socks5";
+        html += `<tr data-country="${p.country}" data-proto="${p.protocol}" data-ip="${p.ip_port.split(":")[0]}">`;
+        html += `<td class="ip-cell">${p.ip_port}</td>`;
+        html += `<td><span class="proto-badge ${badgeClass}">${p.protocol}</span></td>`;
+        html += `<td>${p.country}</td>`;
+        html += `<td>${p.anonymity}</td>`;
+        html += `<td>${p.speed}ms</td>`;
+        html += `<td><span class="copy-btn" onclick="copyProxy(this,'${p.ip_port}')">📋</span></td></tr>`;
     }
     tbody.innerHTML = html;
     document.getElementById("total-count").textContent = filteredData.length;
     const totalPages = Math.ceil(filteredData.length / pageSize) || 1;
-    document.getElementById("page-num").textContent = currentPage + " / " + totalPages;
+    document.getElementById("page-num").textContent = `${currentPage} / ${totalPages}`;
     document.getElementById("prevBtn").disabled = currentPage <= 1;
     document.getElementById("nextBtn").disabled = currentPage >= totalPages;
-    // Update sidebar stats
-    const http = filteredData.filter(p => p.protocol === "HTTP").length;
-    const socks5 = filteredData.filter(p => p.protocol === "SOCKS5").length;
-    const countries = [...new Set(filteredData.map(p => p.country))].length;
-    document.getElementById("s-http").textContent = http;
-    document.getElementById("s-socks5").textContent = socks5;
-    document.getElementById("s-countries").textContent = countries;
-    document.getElementById("stat-http").textContent = http;
-    document.getElementById("stat-socks5").textContent = socks5;
-    document.getElementById("stat-countries").textContent = countries;
 }
 
 function filterTable() {
@@ -435,85 +423,49 @@ function filterTable() {
     renderTable();
 }
 
+function prevPage() { if (currentPage > 1) { currentPage--; renderTable(); } }
+function nextPage() { const max = Math.ceil(filteredData.length / pageSize); if (currentPage < max) { currentPage++; renderTable(); } }
+
 function sortTable(field) {
-    filteredData.sort((a, b) => {
+    proxyData.sort((a, b) => {
         if (field === "speed") return a.speed - b.speed;
         return a.ip_port.localeCompare(b.ip_port);
     });
-    renderTable();
+    filterTable();
 }
 
-function prevPage() {
-    if (currentPage > 1) { currentPage--; renderTable(); }
-}
-
-function nextPage() {
-    const totalPages = Math.ceil(filteredData.length / pageSize) || 1;
-    if (currentPage < totalPages) { currentPage++; renderTable(); }
-}
-
-function copyProxy(el, ipPort) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(ipPort).then(function() {
-            el.textContent = "✅";
-            setTimeout(function() { el.textContent = "📋"; }, 1500);
-        }).catch(function() {
-            fallbackCopy(ipPort, el);
-        });
-    } else {
-        fallbackCopy(ipPort, el);
-    }
-}
-
-function fallbackCopy(text, el) {
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
-    try {
-        document.execCommand("copy");
-        el.textContent = "✅";
-        setTimeout(function() { el.textContent = "📋"; }, 1500);
-    } catch(e) {}
-    document.body.removeChild(ta);
-}
-
-// ========== init ==========
-// Populate country filter
-(function() {
-    const countries = new Set();
-    proxyData.forEach(p => countries.add(p.country));
-    const sel = document.getElementById("search_country");
-    [...countries].sort().forEach(c => {
-        const opt = document.createElement("option");
-        opt.value = c;
-        opt.textContent = c;
-        sel.appendChild(opt);
+function copyProxy(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = "✅";
+        setTimeout(() => { btn.textContent = "📋"; }, 1500);
+    }).catch(() => {
+        const ta = document.createElement("textarea");
+        ta.value = text; document.body.appendChild(ta);
+        ta.select(); document.execCommand("copy"); document.body.removeChild(ta);
+        btn.textContent = "✅";
+        setTimeout(() => { btn.textContent = "📋"; }, 1500);
     });
-    filteredData = [...proxyData];
-    renderTable();
+}
+
+// Initialize country filter
+(() => {
+    const countries = [...new Set(proxyData.map(p => p.country))].sort();
+    const sel = document.getElementById("search_country");
+    countries.forEach(c => { const o = document.createElement("option"); o.value = c; o.textContent = c; sel.appendChild(o); });
+    filterTable();
+    // Update stats
+    document.getElementById("stat-http").textContent = proxyData.filter(p => p.protocol === "HTTP").length;
+    document.getElementById("stat-socks5").textContent = proxyData.filter(p => p.protocol === "SOCKS5").length;
+    document.getElementById("stat-countries").textContent = countries.length;
+    document.getElementById("s-http").textContent = proxyData.filter(p => p.protocol === "HTTP").length;
+    document.getElementById("s-socks5").textContent = proxyData.filter(p => p.protocol === "SOCKS5").length;
+    document.getElementById("s-countries").textContent = countries.length;
 })();
 </script>
+</body>
+</html>"""
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Global Proxy Hub",
-  "description": "Free high-speed anonymous proxy IP list updated every 30 minutes.",
-  "url": "https://free-proxy-hub.pages.dev",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://free-proxy-hub.pages.dev/?search={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
-</body></html>"""
-
-BODY_ROW_TEMPLATE = """<tr data-country="{country}" data-proto="{protocol}" data-ip="{ip}"><td class="ip-cell">{ip_port}</td><td><span class="proto-badge {proto_badge}">{protocol}</span></td><td>{country}</td><td>{anonymity}</td><td>{speed}ms</td><td><span class="copy-btn" onclick="copyProxy(this,'{ip_port}')">📋</span></td></tr>"""
+BODY_ROW_TEMPLATE = r"""<tr data-country="{country}" data-proto="{protocol}" data-ip="{ip}"><td class="ip-cell">{ip_port}</td><td><span class="proto-badge {proto_badge}">{protocol}</span></td><td>{country}</td><td>{anonymity}</td><td>{speed}ms</td><td><span class="copy-btn" onclick="copyProxy(this,'{ip_port}')">📋</span></td></tr>"""
 
 
 def build_html_page(proxies):
@@ -565,10 +517,10 @@ def build_html_page(proxies):
 
 # ==================== 5. 调度主函数 ====================
 def main():
-    print("=" * 55)
-    print("  * Global Proxy Hub - 商业级资产构建引擎启动")
+    print("=" * 58)
+    print("  * Global Proxy Hub - SEO 优化资产构建引擎启动")
     print(f"  [T] {time.strftime('%Y-%m-%d %H:%M:%S')} UTC")
-    print("=" * 55)
+    print("=" * 58)
 
     # 阶段一：抓取
     print("\n[1/4] 多源并发抓取原始代理...")
@@ -597,7 +549,7 @@ def main():
     print(f"  -> 有效节点: {len(validated)}/{len(raw_ips)}")
 
     if not validated:
-        print("  [X] 未发现有效节点，终止任务")
+        print("  [X] 未发现有效节点，跳过HTML生成，仅输出JSON")
         return
 
     # 阶段三：按速度排序
@@ -640,38 +592,8 @@ def main():
 
 # ==================== 6. SEO 文件生成 ====================
 def _generate_seo_files():
-    """生成 sitemap.xml 和 robots.txt"""
-    from datetime import datetime
-    today = datetime.utcnow().strftime("%Y-%m-%d")
-
-    sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://free-proxy-hub.pages.dev/</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://free-proxy-hub.pages.dev/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://free-proxy-hub.pages.dev/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://free-proxy-hub.pages.dev/"/>
-  </url>
-  <url>
-    <loc>https://free-proxy-hub.pages.dev/api/proxies.json</loc>
-    <lastmod>{today}</lastmod>
-    <changefreq>hourly</changefreq>
-    <priority>0.6</priority>
-  </url>
-</urlset>"""
-
-    with open("sitemap.xml", "w", encoding="utf-8") as f:
-        f.write(sitemap)
-    print("  [OK] sitemap.xml 已生成")
-
-    robots = "User-agent: *\nAllow: /\n\nSitemap: https://free-proxy-hub.pages.dev/sitemap.xml\n"
-    with open("robots.txt", "w", encoding="utf-8") as f:
-        f.write(robots)
-    print("  [OK] robots.txt 已生成")
+    """SEO 文件已迁移至 Cloudflare Pages Functions 动态生成"""
+    print("  [OK] robots.txt / sitemap.xml 由 Pages Functions 动态处理 (functions/robots.txt.js / sitemap.xml.js)")
 
 
 
