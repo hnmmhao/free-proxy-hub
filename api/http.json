@@ -1,39 +1,21 @@
 [
   {
-    "ip_port": "34.43.46.91:80",
+    "ip_port": "3.137.86.220:443",
     "protocol": "HTTP",
     "country": "US",
-    "region": "",
-    "city": "",
+    "region": "Ohio",
+    "city": "Columbus",
     "anonymity": "Elite",
-    "speed": 145
+    "speed": 220
   },
   {
-    "ip_port": "170.106.136.181:31002",
+    "ip_port": "213.226.126.35:1080",
     "protocol": "HTTP",
-    "country": "US",
-    "region": "California",
-    "city": "Santa Clara",
+    "country": "NL",
+    "region": "South Holland",
+    "city": "Rotterdam",
     "anonymity": "Elite",
-    "speed": 335
-  },
-  {
-    "ip_port": "195.25.20.155:3128",
-    "protocol": "HTTP",
-    "country": "FR",
-    "region": "Centre-Val de Loire",
-    "city": "Suèvres",
-    "anonymity": "Elite",
-    "speed": 662
-  },
-  {
-    "ip_port": "82.97.247.37:80",
-    "protocol": "HTTP",
-    "country": "AU",
-    "region": "",
-    "city": "",
-    "anonymity": "Elite",
-    "speed": 728
+    "speed": 732
   },
   {
     "ip_port": "95.3.69.222:8080",
@@ -42,61 +24,52 @@
     "region": "İzmir Province",
     "city": "Izmir",
     "anonymity": "Elite",
-    "speed": 899
+    "speed": 807
   },
   {
-    "ip_port": "185.200.188.234:10001",
+    "ip_port": "159.198.35.187:1080",
     "protocol": "HTTP",
-    "country": "RU",
-    "region": "Moscow",
-    "city": "Moscow",
-    "anonymity": "Elite",
-    "speed": 1009
-  },
-  {
-    "ip_port": "91.186.213.124:1081",
-    "protocol": "HTTP",
-    "country": "GB",
-    "region": "England",
-    "city": "London",
-    "anonymity": "Elite",
-    "speed": 1034
-  },
-  {
-    "ip_port": "117.236.124.166:3128",
-    "protocol": "HTTP",
-    "country": "IN",
-    "region": "Gujarat",
-    "city": "Gandhinagar",
-    "anonymity": "Elite",
-    "speed": 1137
-  },
-  {
-    "ip_port": "202.49.176.24:2080",
-    "protocol": "HTTP",
-    "country": "RU",
-    "region": "Moscow",
-    "city": "Moscow",
-    "anonymity": "Elite",
-    "speed": 1215
-  },
-  {
-    "ip_port": "185.11.134.227:8443",
-    "protocol": "HTTP",
-    "country": "RU",
+    "country": "US",
     "region": "",
     "city": "",
     "anonymity": "Elite",
-    "speed": 1434
+    "speed": 837
   },
   {
-    "ip_port": "51.250.86.201:2080",
+    "ip_port": "91.107.182.124:82",
     "protocol": "HTTP",
-    "country": "RU",
+    "country": "DE",
+    "region": "Saxony",
+    "city": "Falkenstein",
+    "anonymity": "Elite",
+    "speed": 932
+  },
+  {
+    "ip_port": "139.59.105.64:8080",
+    "protocol": "HTTP",
+    "country": "SG",
+    "region": "",
+    "city": "Singapore",
+    "anonymity": "Elite",
+    "speed": 1194
+  },
+  {
+    "ip_port": "72.56.238.99:9090",
+    "protocol": "HTTP",
+    "country": "US",
     "region": "",
     "city": "",
     "anonymity": "Elite",
-    "speed": 1464
+    "speed": 1266
+  },
+  {
+    "ip_port": "195.25.20.155:3128",
+    "protocol": "HTTP",
+    "country": "FR",
+    "region": "Centre-Val de Loire",
+    "city": "Suèvres",
+    "anonymity": "Elite",
+    "speed": 1303
   },
   {
     "ip_port": "113.160.132.26:8080",
@@ -105,7 +78,25 @@
     "region": "Hưng Yên Province",
     "city": "Hung Yen",
     "anonymity": "Elite",
-    "speed": 1509
+    "speed": 1572
+  },
+  {
+    "ip_port": "84.47.150.125:1080",
+    "protocol": "HTTP",
+    "country": "RU",
+    "region": "",
+    "city": "",
+    "anonymity": "Elite",
+    "speed": 1597
+  },
+  {
+    "ip_port": "185.141.26.131:3128",
+    "protocol": "HTTP",
+    "country": "RO",
+    "region": "Bucharest",
+    "city": "Bucharest",
+    "anonymity": "Elite",
+    "speed": 1778
   },
   {
     "ip_port": "202.28.194.139:31280",
@@ -114,15 +105,15 @@
     "region": "Bangkok",
     "city": "Bangkok",
     "anonymity": "Elite",
-    "speed": 1807
+    "speed": 1790
   },
   {
-    "ip_port": "176.111.37.5:39811",
+    "ip_port": "169.212.15.161:5000",
     "protocol": "HTTP",
-    "country": "UA",
-    "region": "Luhansk",
-    "city": "Dobropol'ye",
+    "country": "KR",
+    "region": "Gyeonggi-do",
+    "city": "Gimpo-si",
     "anonymity": "Elite",
-    "speed": 2327
+    "speed": 2364
   }
 ]
