@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://free-proxy-hub.pages.dev/</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://free-proxy-hub.pages.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://free-proxy-hub.pages.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://free-proxy-hub.pages.dev/"/>
+  </url>
+  <url>
+    <loc>https://free-proxy-hub.pages.dev/api/proxies.json</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

@@ -1,9 +1,63 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Global Proxy Hub</title>
+<title>Global Proxy Hub — Free High-Speed Anonymous Proxy List | Updated Every 30min</title>
+<meta name="description" content="Global Proxy Hub - Free high-speed anonymous proxy IP list. HTTP & SOCKS5 proxies from 26+ countries, updated every 30 minutes. Low latency, elite anonymity, CORS API support.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="free proxy, proxy list, HTTP proxy, SOCKS5 proxy, anonymous proxy, free proxy list, proxy hub, high speed proxy">
+<link rel="canonical" href="https://free-proxy-hub.pages.dev">
+<link rel="alternate" hreflang="zh-CN" href="https://free-proxy-hub.pages.dev">
+<link rel="alternate" hreflang="en" href="https://free-proxy-hub.pages.dev/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://free-proxy-hub.pages.dev">
+<meta name="theme-color" content="#0d47a1">
+<meta name="author" content="Global Proxy Hub">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:title" content="Global Proxy Hub — Free High-Speed Anonymous Proxy List">
+<meta property="og:description" content="Free high-speed anonymous proxy IP list. HTTP & SOCKS5 proxies from 26+ countries, updated every 30 minutes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://free-proxy-hub.pages.dev">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Global Proxy Hub — Free High-Speed Anonymous Proxy List">
+<meta name="twitter:description" content="Free high-speed anonymous proxy IP list. HTTP & SOCKS5 proxies from 26+ countries, updated every 30 minutes.">
+<meta property="og:image" content="https://free-proxy-hub.pages.dev/og-image.png">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="Global Proxy Hub">
+<meta name="twitter:image" content="https://free-proxy-hub.pages.dev/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Global Proxy Hub",
+  "alternateName": ["Global Proxy Hub", "全球代理中心"],
+  "url": "https://free-proxy-hub.pages.dev",
+  "description": "Free high-speed anonymous proxy IP list. HTTP & SOCKS5 proxies from 26+ countries, updated every 30 minutes.",
+  "inLanguage": ["zh-CN", "en"],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://free-proxy-hub.pages.dev/?search={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Global Proxy Hub",
+    "item": "https://free-proxy-hub.pages.dev"
+  }]
+}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -66,8 +120,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <div class="container">
 <div class="flex items-center justify-between flex-wrap gap-2">
 <div>
-<div class="logo">Global <span>Proxy</span> Hub</div>
-<div class="subtitle"><span data-i18n="header_subtitle">免费高速代理IP - 30分钟自动更新</span></div>
+<h1>
+<span class="logo">Global <span>Proxy</span> Hub</span>
+<span class="subtitle"><span data-i18n="header_subtitle">免费高速代理IP - 30分钟自动更新</span></span>
+</h1>
 </div>
 <div class="nav flex items-center gap-1">
 <a href="#proxy-list" data-i18n="nav_proxies">代理列表</a>
@@ -78,18 +134,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 </div>
 </div>
 
-<div class="container">
+<main class="container">
 <div class="stats-grid" style="margin-top:-20px">
-<div class="stat-card"><div class="num" style="color:#e65100" id="stat-total">2</div><div class="label" data-i18n="stat_nodes">代理节点</div></div>
-<div class="stat-card"><div class="num" style="color:#1565c0" id="stat-http">1</div><div class="label">HTTP</div></div>
+<div class="stat-card"><div class="num" style="color:#e65100" id="stat-total">3</div><div class="label" data-i18n="stat_nodes">代理节点</div></div>
+<div class="stat-card"><div class="num" style="color:#1565c0" id="stat-http">2</div><div class="label">HTTP</div></div>
 <div class="stat-card"><div class="num" style="color:#7b1fa2" id="stat-socks5">1</div><div class="label">SOCKS5</div></div>
-<div class="stat-card"><div class="num" style="color:#2e7d32" id="stat-countries">2</div><div class="label" data-i18n="stat_countries">覆盖国家</div></div>
+<div class="stat-card"><div class="num" style="color:#2e7d32" id="stat-countries">3</div><div class="label" data-i18n="stat_countries">覆盖国家</div></div>
 </div>
 
 <div class="content-wrap">
 <div class="main-area">
 <div class="card" id="proxy-list">
-<div class="card-title"><span data-i18n="card_title">代理列表</span><span class="update-badge" style="color:#555;font-weight:normal"><span class="dot" style="background:#4caf50"></span> <span data-i18n="card_updated">更新时间</span>: 2026-06-15 16:03:21 UTC</span></div>
+<div class="card-title"><h2 data-i18n="card_title">代理列表</h2><span class="update-badge" style="color:#555;font-weight:normal"><span class="dot" style="background:#4caf50"></span> <span data-i18n="card_updated">更新时间</span>: <time datetime="2026-06-16T07:01:12+00:00">2026-06-16 07:01:12 UTC</time></span></div>
 <div class="card-body">
 <div class="filter-bar">
 <select id="search_proto" onchange="filterTable()"><option value="ALL" data-i18n="filter_all_proto">全部协议</option><option value="HTTP">HTTP</option><option value="SOCKS5">SOCKS5</option></select>
@@ -106,11 +162,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <th><a href="#" onclick="sortTable('speed');return false" style="text-decoration:none;color:inherit" data-i18n="th_speed">速度</a></th>
 <th data-i18n="th_copy">操作</th>
 </tr></thead>
-<tbody id="proxy-tbody"><tr data-country="US" data-proto="HTTP" data-ip="1.2.3.4"><td class="ip-cell">1.2.3.4:8080</td><td><span class="proto-badge badge-http">HTTP</span></td><td>US</td><td>Elite</td><td>100ms</td><td><span class="copy-btn" onclick="copyProxy(this,'1.2.3.4:8080')">📋</span></td></tr><tr data-country="CN" data-proto="SOCKS5" data-ip="5.6.7.8"><td class="ip-cell">5.6.7.8:3128</td><td><span class="proto-badge badge-socks5">SOCKS5</span></td><td>CN</td><td>Elite</td><td>200ms</td><td><span class="copy-btn" onclick="copyProxy(this,'5.6.7.8:3128')">📋</span></td></tr></tbody>
+<tbody id="proxy-tbody"><tr data-country="US" data-proto="HTTP" data-ip="1.2.3.4"><td class="ip-cell">1.2.3.4:8080</td><td><span class="proto-badge badge-http">HTTP</span></td><td>US</td><td>Elite</td><td>50ms</td><td><span class="copy-btn" onclick="copyProxy(this,'1.2.3.4:8080')">📋</span></td></tr><tr data-country="JP" data-proto="SOCKS5" data-ip="5.6.7.8"><td class="ip-cell">5.6.7.8:3128</td><td><span class="proto-badge badge-socks5">SOCKS5</span></td><td>JP</td><td>Elite</td><td>120ms</td><td><span class="copy-btn" onclick="copyProxy(this,'5.6.7.8:3128')">📋</span></td></tr><tr data-country="DE" data-proto="HTTP" data-ip="9.10.11.12"><td class="ip-cell">9.10.11.12:80</td><td><span class="proto-badge badge-http">HTTP</span></td><td>DE</td><td>Elite</td><td>200ms</td><td><span class="copy-btn" onclick="copyProxy(this,'9.10.11.12:80')">📋</span></td></tr></tbody>
 </table>
 </div>
 <div class="pagination">
-<div class="info"><span data-i18n="pagination_total">共</span> <span id="total-count">2</span> <span data-i18n="pagination_items">条</span></div>
+<div class="info"><span data-i18n="pagination_total">共</span> <span id="total-count">3</span> <span data-i18n="pagination_items">条</span></div>
 <div class="pages">
 <button id="prevBtn" onclick="prevPage()"><span data-i18n="btn_prev">← 上一页</span></button>
 <span class="page-info" id="page-num">1 / 1</span>
@@ -118,17 +174,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 </div></div></div></div>
 </div>
 
-<div class="sidebar">
+<aside class="sidebar">
 <div class="side-card">
-<div class="side-title" data-i18n="sidebar_stats_title">数据统计</div>
-<div class="side-item"><span class="key" data-i18n="sidebar_total">总节点</span><span class="val" id="s-total">2</span></div>
-<div class="side-item"><span class="key">HTTP</span><span class="val" id="s-http">1</span></div>
+<h3 class="side-title" data-i18n="sidebar_stats_title">数据统计</h3>
+<div class="side-item"><span class="key" data-i18n="sidebar_total">总节点</span><span class="val" id="s-total">3</span></div>
+<div class="side-item"><span class="key">HTTP</span><span class="val" id="s-http">2</span></div>
 <div class="side-item"><span class="key">SOCKS5</span><span class="val" id="s-socks5">1</span></div>
-<div class="side-item"><span class="key" data-i18n="sidebar_countries">国家</span><span class="val" id="s-countries">2</span></div>
+<div class="side-item"><span class="key" data-i18n="sidebar_countries">国家</span><span class="val" id="s-countries">3</span></div>
 <div class="side-item"><span class="key" data-i18n="sidebar_update">更新</span><span class="val">30min</span></div></div>
 <div class="side-card ad-box" style="min-height:250px;display:none;align-items:center;justify-content:center;font-size:12px;margin-bottom:15px" data-i18n="ad_336">广告位：336x280 方形模块</div>
 <div class="side-card" id="api-docs">
-<div class="side-title" data-i18n="sidebar_api_title">API 接口</div>
+<h3 class="side-title" data-i18n="sidebar_api_title">API 接口</h3>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/proxies.json</span></div>
 <div class="api-desc" data-i18n="api_proxies_desc">全量代理数据，按速度升序，支持 CORS</div>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/http.json</span></div>
@@ -148,9 +204,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 </div>
 </div>
 </div>
-</div>
+</section>
 
-<div class="ad-box" style="display:none" data-i18n="ad_728">广告位：728x90 底部横幅</div>
+<section class="ad-box" style="display:none" data-i18n="ad_728">广告位：728x90 底部横幅</div>
 
 <footer class="footer">
 <div class="container"><p data-i18n="footer_text">Global Proxy Hub — 免费高匿代理 IP 资源站 | 数据每 30 分钟自动更新</p></div></footer>
@@ -233,7 +289,7 @@ let currentLang=localStorage.getItem("lang")||"zh";setLang(currentLang);
 function toggleLang(){currentLang=currentLang==="zh"?"en":"zh";setLang(currentLang);localStorage.setItem("lang",currentLang)}
 
 // ========== data ==========
-const proxyData = [];
+const proxyData = [{"ip_port": "1.2.3.4:8080", "protocol": "HTTP", "country": "US", "region": "CA", "city": "LA", "anonymity": "Elite", "speed": 50}, {"ip_port": "5.6.7.8:3128", "protocol": "SOCKS5", "country": "JP", "region": "TK", "city": "Tokyo", "anonymity": "Elite", "speed": 120}, {"ip_port": "9.10.11.12:80", "protocol": "HTTP", "country": "DE", "region": "", "city": "", "anonymity": "Elite", "speed": 200}];
 const tbody = document.getElementById("proxy-tbody");
 
 let pageSize = 25;
@@ -348,5 +404,20 @@ function fallbackCopy(text, el) {
     filteredData = [...proxyData];
     renderTable();
 })();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Global Proxy Hub",
+  "description": "Free high-speed anonymous proxy IP list updated every 30 minutes.",
+  "url": "https://free-proxy-hub.pages.dev",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://free-proxy-hub.pages.dev/?search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
 </script>
 </body></html>

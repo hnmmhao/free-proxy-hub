@@ -20,11 +20,16 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ==================== 1. 多源全量配置 ====================
 PROXY_SOURCES = [
-    "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http,socks5&timeout=3000&country=all&ssl=all&anonymity=all",
-    "https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt",
-    "https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/socks5.txt",
-    "https://raw.githubusercontent.com/jetkai/proxy-list/main/online-proxies/txt/proxies.txt",
-    "https://raw.githubusercontent.com/shiftytr/proxy-list/master/proxy.txt"
+    "https://raw.githubusercontent.com/roosterkid/openproxylist/main/HTTPS_RAW.txt",
+    "https://raw.githubusercontent.com/roosterkid/openproxylist/main/SOCKS5_RAW.txt",
+    "https://raw.githubusercontent.com/mmpx12/proxy-list/master/https.txt",
+    "https://raw.githubusercontent.com/mmpx12/proxy-list/master/socks5.txt",
+    "https://raw.githubusercontent.com/officialputuid/KangProxy/KangProxy/https/https.txt",
+    "https://raw.githubusercontent.com/officialputuid/KangProxy/KangProxy/socks5/socks5.txt",
+    "https://raw.githubusercontent.com/vakhov/fresh-proxy-list/master/https.txt",
+    "https://raw.githubusercontent.com/vakhov/fresh-proxy-list/master/socks5.txt",
+    "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt",
+    "https://raw.githubusercontent.com/ShiftyTR/Proxy-List/master/https.txt",
 ]
 
 GEO_TARGET = "https://api.ip.sb/geoip"
@@ -85,11 +90,65 @@ def inspect_proxy(ip_port):
 
 # ==================== 4. HTML 模板 ====================
 HTML_TEMPLATE = r"""<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Global Proxy Hub</title>
+<title>Global Proxy Hub — Free High-Speed Anonymous Proxy List | Updated Every 30min</title>
+<meta name="description" content="Global Proxy Hub - Free high-speed anonymous proxy IP list. HTTP & SOCKS5 proxies from 26+ countries, updated every 30 minutes. Low latency, elite anonymity, CORS API support.">
+<meta name="robots" content="index, follow">
+<meta name="keywords" content="free proxy, proxy list, HTTP proxy, SOCKS5 proxy, anonymous proxy, free proxy list, proxy hub, high speed proxy">
+<link rel="canonical" href="https://free-proxy-hub.pages.dev">
+<link rel="alternate" hreflang="zh-CN" href="https://free-proxy-hub.pages.dev">
+<link rel="alternate" hreflang="en" href="https://free-proxy-hub.pages.dev/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://free-proxy-hub.pages.dev">
+<meta name="theme-color" content="#0d47a1">
+<meta name="author" content="Global Proxy Hub">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta property="og:title" content="Global Proxy Hub — Free High-Speed Anonymous Proxy List">
+<meta property="og:description" content="Free high-speed anonymous proxy IP list. HTTP & SOCKS5 proxies from 26+ countries, updated every 30 minutes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://free-proxy-hub.pages.dev">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Global Proxy Hub — Free High-Speed Anonymous Proxy List">
+<meta name="twitter:description" content="Free high-speed anonymous proxy IP list. HTTP & SOCKS5 proxies from 26+ countries, updated every 30 minutes.">
+<meta property="og:image" content="https://free-proxy-hub.pages.dev/og-image.png">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="Global Proxy Hub">
+<meta name="twitter:image" content="https://free-proxy-hub.pages.dev/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Global Proxy Hub",
+  "alternateName": ["Global Proxy Hub", "全球代理中心"],
+  "url": "https://free-proxy-hub.pages.dev",
+  "description": "Free high-speed anonymous proxy IP list. HTTP & SOCKS5 proxies from 26+ countries, updated every 30 minutes.",
+  "inLanguage": ["zh-CN", "en"],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://free-proxy-hub.pages.dev/?search={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Global Proxy Hub",
+    "item": "https://free-proxy-hub.pages.dev"
+  }]
+}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -152,8 +211,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <div class="container">
 <div class="flex items-center justify-between flex-wrap gap-2">
 <div>
-<div class="logo">Global <span>Proxy</span> Hub</div>
-<div class="subtitle"><span data-i18n="header_subtitle">免费高速代理IP - 30分钟自动更新</span></div>
+<h1>
+<span class="logo">Global <span>Proxy</span> Hub</span>
+<span class="subtitle"><span data-i18n="header_subtitle">免费高速代理IP - 30分钟自动更新</span></span>
+</h1>
 </div>
 <div class="nav flex items-center gap-1">
 <a href="#proxy-list" data-i18n="nav_proxies">代理列表</a>
@@ -164,7 +225,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 </div>
 </div>
 
-<div class="container">
+<main class="container">
 <div class="stats-grid" style="margin-top:-20px">
 <div class="stat-card"><div class="num" style="color:#e65100" id="stat-total">{{NODE_COUNT}}</div><div class="label" data-i18n="stat_nodes">代理节点</div></div>
 <div class="stat-card"><div class="num" style="color:#1565c0" id="stat-http">0</div><div class="label">HTTP</div></div>
@@ -175,7 +236,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <div class="content-wrap">
 <div class="main-area">
 <div class="card" id="proxy-list">
-<div class="card-title"><span data-i18n="card_title">代理列表</span><span class="update-badge" style="color:#555;font-weight:normal"><span class="dot" style="background:#4caf50"></span> <span data-i18n="card_updated">更新时间</span>: {{UPDATE_TIME}} UTC</span></div>
+<div class="card-title"><h2 data-i18n="card_title">代理列表</h2><span class="update-badge" style="color:#555;font-weight:normal"><span class="dot" style="background:#4caf50"></span> <span data-i18n="card_updated">更新时间</span>: <time datetime="{{UPDATE_TIME_ISO}}">{{UPDATE_TIME}} UTC</time></span></div>
 <div class="card-body">
 <div class="filter-bar">
 <select id="search_proto" onchange="filterTable()"><option value="ALL" data-i18n="filter_all_proto">全部协议</option><option value="HTTP">HTTP</option><option value="SOCKS5">SOCKS5</option></select>
@@ -204,9 +265,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 </div></div></div></div>
 </div>
 
-<div class="sidebar">
+<aside class="sidebar">
 <div class="side-card">
-<div class="side-title" data-i18n="sidebar_stats_title">数据统计</div>
+<h3 class="side-title" data-i18n="sidebar_stats_title">数据统计</h3>
 <div class="side-item"><span class="key" data-i18n="sidebar_total">总节点</span><span class="val" id="s-total">{{NODE_COUNT}}</span></div>
 <div class="side-item"><span class="key">HTTP</span><span class="val" id="s-http">0</span></div>
 <div class="side-item"><span class="key">SOCKS5</span><span class="val" id="s-socks5">0</span></div>
@@ -214,7 +275,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 <div class="side-item"><span class="key" data-i18n="sidebar_update">更新</span><span class="val">30min</span></div></div>
 <div class="side-card ad-box" style="min-height:250px;display:none;align-items:center;justify-content:center;font-size:12px;margin-bottom:15px" data-i18n="ad_336">广告位：336x280 方形模块</div>
 <div class="side-card" id="api-docs">
-<div class="side-title" data-i18n="sidebar_api_title">API 接口</div>
+<h3 class="side-title" data-i18n="sidebar_api_title">API 接口</h3>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/proxies.json</span></div>
 <div class="api-desc" data-i18n="api_proxies_desc">全量代理数据，按速度升序，支持 CORS</div>
 <div class="api-endpoint"><span class="method">GET</span><span class="url">/api/http.json</span></div>
@@ -234,9 +295,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;bac
 </div>
 </div>
 </div>
-</div>
+</section>
 
-<div class="ad-box" style="display:none" data-i18n="ad_728">广告位：728x90 底部横幅</div>
+<section class="ad-box" style="display:none" data-i18n="ad_728">广告位：728x90 底部横幅</div>
 
 <footer class="footer">
 <div class="container"><p data-i18n="footer_text">Global Proxy Hub — 免费高匿代理 IP 资源站 | 数据每 30 分钟自动更新</p></div></footer>
@@ -435,6 +496,21 @@ function fallbackCopy(text, el) {
     renderTable();
 })();
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Global Proxy Hub",
+  "description": "Free high-speed anonymous proxy IP list updated every 30 minutes.",
+  "url": "https://free-proxy-hub.pages.dev",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://free-proxy-hub.pages.dev/?search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
 </body></html>"""
 
 BODY_ROW_TEMPLATE = """<tr data-country="{country}" data-proto="{protocol}" data-ip="{ip}"><td class="ip-cell">{ip_port}</td><td><span class="proto-badge {proto_badge}">{protocol}</span></td><td>{country}</td><td>{anonymity}</td><td>{speed}ms</td><td><span class="copy-btn" onclick="copyProxy(this,'{ip_port}')">📋</span></td></tr>"""
@@ -460,8 +536,10 @@ def build_html_page(proxies):
 
     from datetime import datetime
     update_time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    update_time_iso = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S+00:00")
 
     html = HTML_TEMPLATE.replace("{{UPDATE_TIME}}", update_time)
+    html = html.replace("{{UPDATE_TIME_ISO}}", update_time_iso)
     html = html.replace("{{NODE_COUNT}}", str(len(proxies)))
     html = html.replace("{{TABLE_ROWS}}", rows_html)
     # Set initial stats from Python data
@@ -474,6 +552,10 @@ def build_html_page(proxies):
     html = html.replace('id="s-http">0', 'id="s-http">' + str(http_count))
     html = html.replace('id="s-socks5">0', 'id="s-socks5">' + str(socks5_count))
     html = html.replace('id="s-countries">0', 'id="s-countries">' + str(countries))
+    # Embed proxy data as JSON into JavaScript proxyData array
+    import json as _json
+    proxies_json = _json.dumps(proxies, ensure_ascii=False)
+    html = html.replace("const proxyData = [];", "const proxyData = " + proxies_json + ";")
 
 
     with open("index.html", "w", encoding="utf-8") as f:
@@ -519,7 +601,7 @@ def main():
         return
 
     # 阶段三：按速度排序
-    print(f"\n[3/4] 排序并输出 JSON...")
+    print(f"\n[3/5] 排序并输出 JSON...")
     validated.sort(key=lambda x: x["speed"])
 
     # 输出 JSON
@@ -543,13 +625,55 @@ def main():
     print(f"  [OK] {socks5_path} - {socks5_count} 条 SOCKS5 数据")
 
     # 阶段四：生成 HTML
-    print(f"\n[4/4] 生成前端页面...")
+    print(f"\n[4/5] 生成前端页面...")
     build_html_page(validated)
 
-    print("\n" + "=" * 55)
+    # 阶段五：生成 SEO 文件
+    print(f"\n[5/5] 生成 SEO 文件 (sitemap.xml | robots.txt)...")
+    _generate_seo_files()
+
+    print("\n" + "=" * 58)
     print("  [OK] 边缘 API 库及 HTML 静态首页自动化打包圆满成功！")
     print(f"  [OK] 共 {len(validated)} 个活跃节点已就绪")
-    print("=" * 55)
+    print("=" * 58)
+
+
+# ==================== 6. SEO 文件生成 ====================
+def _generate_seo_files():
+    """生成 sitemap.xml 和 robots.txt"""
+    from datetime import datetime
+    today = datetime.utcnow().strftime("%Y-%m-%d")
+
+    sitemap = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://free-proxy-hub.pages.dev/</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://free-proxy-hub.pages.dev/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://free-proxy-hub.pages.dev/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://free-proxy-hub.pages.dev/"/>
+  </url>
+  <url>
+    <loc>https://free-proxy-hub.pages.dev/api/proxies.json</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>"""
+
+    with open("sitemap.xml", "w", encoding="utf-8") as f:
+        f.write(sitemap)
+    print("  [OK] sitemap.xml 已生成")
+
+    robots = "User-agent: *\nAllow: /\n\nSitemap: https://free-proxy-hub.pages.dev/sitemap.xml\n"
+    with open("robots.txt", "w", encoding="utf-8") as f:
+        f.write(robots)
+    print("  [OK] robots.txt 已生成")
+
+
 
 
 if __name__ == "__main__":
