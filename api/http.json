@@ -6,7 +6,25 @@
     "region": "",
     "city": "",
     "anonymity": "Elite",
-    "speed": 318
+    "speed": 195
+  },
+  {
+    "ip_port": "104.154.186.48:80",
+    "protocol": "HTTP",
+    "country": "US",
+    "region": "Iowa",
+    "city": "Council Bluffs",
+    "anonymity": "Elite",
+    "speed": 202
+  },
+  {
+    "ip_port": "15.204.151.144:3128",
+    "protocol": "HTTP",
+    "country": "US",
+    "region": "Virginia",
+    "city": "Reston",
+    "anonymity": "Elite",
+    "speed": 399
   },
   {
     "ip_port": "37.49.224.15:3128",
@@ -15,34 +33,43 @@
     "region": "",
     "city": "",
     "anonymity": "Elite",
-    "speed": 784
+    "speed": 490
   },
   {
-    "ip_port": "8.218.210.54:80",
+    "ip_port": "180.131.145.63:4000",
     "protocol": "HTTP",
-    "country": "HK",
+    "country": "US",
+    "region": "New York",
+    "city": "New York",
+    "anonymity": "Elite",
+    "speed": 490
+  },
+  {
+    "ip_port": "192.236.131.143:1080",
+    "protocol": "HTTP",
+    "country": "US",
     "region": "",
-    "city": "Hong Kong",
+    "city": "",
+    "anonymity": "Elite",
+    "speed": 694
+  },
+  {
+    "ip_port": "150.241.116.167:443",
+    "protocol": "HTTP",
+    "country": "US",
+    "region": "",
+    "city": "",
+    "anonymity": "Elite",
+    "speed": 704
+  },
+  {
+    "ip_port": "65.109.87.121:18080",
+    "protocol": "HTTP",
+    "country": "US",
+    "region": "",
+    "city": "",
     "anonymity": "Elite",
     "speed": 821
-  },
-  {
-    "ip_port": "8.218.210.54:443",
-    "protocol": "HTTP",
-    "country": "HK",
-    "region": "",
-    "city": "Hong Kong",
-    "anonymity": "Elite",
-    "speed": 825
-  },
-  {
-    "ip_port": "138.124.114.42:7443",
-    "protocol": "HTTP",
-    "country": "GB",
-    "region": "England",
-    "city": "London",
-    "anonymity": "Elite",
-    "speed": 1016
   },
   {
     "ip_port": "95.3.69.222:8080",
@@ -51,52 +78,43 @@
     "region": "İzmir Province",
     "city": "Izmir",
     "anonymity": "Elite",
-    "speed": 1105
+    "speed": 853
   },
   {
-    "ip_port": "91.186.213.124:1081",
+    "ip_port": "117.236.124.166:3128",
     "protocol": "HTTP",
-    "country": "GR",
+    "country": "IN",
+    "region": "Gujarat",
+    "city": "Gandhinagar",
+    "anonymity": "Elite",
+    "speed": 1039
+  },
+  {
+    "ip_port": "177.135.190.101:8080",
+    "protocol": "HTTP",
+    "country": "BR",
+    "region": "Rio Grande do Norte",
+    "city": "Natal",
+    "anonymity": "Elite",
+    "speed": 1165
+  },
+  {
+    "ip_port": "129.226.92.241:80",
+    "protocol": "HTTP",
+    "country": "SG",
     "region": "",
-    "city": "",
+    "city": "Singapore",
     "anonymity": "Elite",
-    "speed": 1125
+    "speed": 1197
   },
   {
-    "ip_port": "113.160.132.26:8080",
+    "ip_port": "2.26.87.216:1080",
     "protocol": "HTTP",
-    "country": "VN",
-    "region": "Hưng Yên Province",
-    "city": "Hung Yen",
+    "country": "FI",
+    "region": "Uusimaa",
+    "city": "Helsinki",
     "anonymity": "Elite",
-    "speed": 1199
-  },
-  {
-    "ip_port": "194.59.204.87:9080",
-    "protocol": "HTTP",
-    "country": "DE",
-    "region": "Bavaria",
-    "city": "Nuremberg",
-    "anonymity": "Elite",
-    "speed": 1218
-  },
-  {
-    "ip_port": "45.88.174.195:8080",
-    "protocol": "HTTP",
-    "country": "NL",
-    "region": "North Holland",
-    "city": "Amsterdam",
-    "anonymity": "Elite",
-    "speed": 1403
-  },
-  {
-    "ip_port": "185.200.188.234:10001",
-    "protocol": "HTTP",
-    "country": "RU",
-    "region": "Moscow",
-    "city": "Moscow",
-    "anonymity": "Elite",
-    "speed": 1468
+    "speed": 1308
   },
   {
     "ip_port": "212.58.132.5:8888",
@@ -105,25 +123,16 @@
     "region": "",
     "city": "",
     "anonymity": "Elite",
-    "speed": 1485
+    "speed": 1448
   },
   {
-    "ip_port": "159.198.35.187:1080",
+    "ip_port": "202.49.176.24:2080",
     "protocol": "HTTP",
-    "country": "US",
-    "region": "",
-    "city": "",
+    "country": "RU",
+    "region": "Moscow",
+    "city": "Moscow",
     "anonymity": "Elite",
-    "speed": 1525
-  },
-  {
-    "ip_port": "195.25.20.155:3128",
-    "protocol": "HTTP",
-    "country": "FR",
-    "region": "Centre-Val de Loire",
-    "city": "Suèvres",
-    "anonymity": "Elite",
-    "speed": 1679
+    "speed": 1610
   },
   {
     "ip_port": "202.28.194.139:31280",
@@ -132,34 +141,25 @@
     "region": "Bangkok",
     "city": "Bangkok",
     "anonymity": "Elite",
-    "speed": 1761
+    "speed": 1745
   },
   {
-    "ip_port": "91.107.163.9:82",
+    "ip_port": "207.254.71.62:8088",
     "protocol": "HTTP",
-    "country": "DE",
-    "region": "Saxony",
-    "city": "Falkenstein",
+    "country": "IE",
+    "region": "Leinster",
+    "city": "Dublin",
     "anonymity": "Elite",
-    "speed": 2040
+    "speed": 2499
   },
   {
-    "ip_port": "137.59.47.73:3128",
+    "ip_port": "113.160.132.26:8080",
     "protocol": "HTTP",
     "country": "VN",
-    "region": "Ho Chi Minh",
-    "city": "Ho Chi Minh City",
+    "region": "Hưng Yên Province",
+    "city": "Hung Yen",
     "anonymity": "Elite",
-    "speed": 2475
-  },
-  {
-    "ip_port": "103.249.132.247:1080",
-    "protocol": "HTTP",
-    "country": "AE",
-    "region": "",
-    "city": "",
-    "anonymity": "Elite",
-    "speed": 2531
+    "speed": 2588
   },
   {
     "ip_port": "173.212.237.47:3128",
@@ -168,6 +168,24 @@
     "region": "Grand Est",
     "city": "Lauterbourg",
     "anonymity": "Elite",
-    "speed": 3511
+    "speed": 2764
+  },
+  {
+    "ip_port": "91.186.213.124:1081",
+    "protocol": "HTTP",
+    "country": "GB",
+    "region": "England",
+    "city": "London",
+    "anonymity": "Elite",
+    "speed": 3310
+  },
+  {
+    "ip_port": "93.113.63.11:3128",
+    "protocol": "HTTP",
+    "country": "TR",
+    "region": "",
+    "city": "",
+    "anonymity": "Elite",
+    "speed": 4932
   }
 ]
