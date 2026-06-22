@@ -1,21 +1,39 @@
 [
   {
-    "ip_port": "3.211.120.181:443",
-    "protocol": "HTTP",
-    "country": "US",
-    "region": "Virginia",
-    "city": "Ashburn",
-    "anonymity": "Elite",
-    "speed": 134
-  },
-  {
     "ip_port": "34.43.46.91:80",
     "protocol": "HTTP",
     "country": "US",
     "region": "",
     "city": "",
     "anonymity": "Elite",
-    "speed": 224
+    "speed": 258
+  },
+  {
+    "ip_port": "3.211.120.181:443",
+    "protocol": "HTTP",
+    "country": "US",
+    "region": "Virginia",
+    "city": "Ashburn",
+    "anonymity": "Elite",
+    "speed": 372
+  },
+  {
+    "ip_port": "3.137.86.220:443",
+    "protocol": "HTTP",
+    "country": "US",
+    "region": "Ohio",
+    "city": "Columbus",
+    "anonymity": "Elite",
+    "speed": 380
+  },
+  {
+    "ip_port": "144.202.14.153:50000",
+    "protocol": "HTTP",
+    "country": "US",
+    "region": "New York",
+    "city": "Staten Island",
+    "anonymity": "Elite",
+    "speed": 486
   },
   {
     "ip_port": "37.49.224.15:3128",
@@ -24,25 +42,7 @@
     "region": "",
     "city": "",
     "anonymity": "Elite",
-    "speed": 551
-  },
-  {
-    "ip_port": "104.128.228.69:8118",
-    "protocol": "HTTP",
-    "country": "US",
-    "region": "",
-    "city": "",
-    "anonymity": "Elite",
-    "speed": 623
-  },
-  {
-    "ip_port": "176.111.37.5:39811",
-    "protocol": "HTTP",
-    "country": "UA",
-    "region": "Luhansk",
-    "city": "Dobropol'ye",
-    "anonymity": "Elite",
-    "speed": 650
+    "speed": 815
   },
   {
     "ip_port": "176.111.37.216:39811",
@@ -51,25 +51,34 @@
     "region": "Luhansk",
     "city": "Dobropol'ye",
     "anonymity": "Elite",
-    "speed": 688
+    "speed": 908
   },
   {
-    "ip_port": "41.216.182.232:10808",
+    "ip_port": "82.97.247.37:80",
     "protocol": "HTTP",
-    "country": "SE",
-    "region": "Stockholm County",
-    "city": "Stockholm",
-    "anonymity": "Elite",
-    "speed": 697
-  },
-  {
-    "ip_port": "84.47.150.125:1080",
-    "protocol": "HTTP",
-    "country": "RU",
+    "country": "AU",
     "region": "",
     "city": "",
     "anonymity": "Elite",
-    "speed": 717
+    "speed": 918
+  },
+  {
+    "ip_port": "176.111.37.5:39811",
+    "protocol": "HTTP",
+    "country": "UA",
+    "region": "Luhansk",
+    "city": "Dobropol'ye",
+    "anonymity": "Elite",
+    "speed": 920
+  },
+  {
+    "ip_port": "95.3.69.222:8080",
+    "protocol": "HTTP",
+    "country": "TR",
+    "region": "İzmir Province",
+    "city": "Izmir",
+    "anonymity": "Elite",
+    "speed": 1010
   },
   {
     "ip_port": "185.200.188.234:10001",
@@ -78,34 +87,7 @@
     "region": "Moscow",
     "city": "Moscow",
     "anonymity": "Elite",
-    "speed": 863
-  },
-  {
-    "ip_port": "82.97.240.163:443",
-    "protocol": "HTTP",
-    "country": "ES",
-    "region": "Madrid",
-    "city": "Madrid",
-    "anonymity": "Elite",
-    "speed": 919
-  },
-  {
-    "ip_port": "117.236.124.166:3128",
-    "protocol": "HTTP",
-    "country": "IN",
-    "region": "Gujarat",
-    "city": "Gandhinagar",
-    "anonymity": "Elite",
-    "speed": 1161
-  },
-  {
-    "ip_port": "129.226.92.241:80",
-    "protocol": "HTTP",
-    "country": "SG",
-    "region": "",
-    "city": "Singapore",
-    "anonymity": "Elite",
-    "speed": 1206
+    "speed": 1137
   },
   {
     "ip_port": "54.255.119.3:9090",
@@ -114,7 +96,7 @@
     "region": "",
     "city": "Singapore",
     "anonymity": "Elite",
-    "speed": 1232
+    "speed": 1342
   },
   {
     "ip_port": "212.58.132.5:8888",
@@ -123,7 +105,7 @@
     "region": "",
     "city": "",
     "anonymity": "Elite",
-    "speed": 1389
+    "speed": 1461
   },
   {
     "ip_port": "113.160.132.26:8080",
@@ -132,7 +114,25 @@
     "region": "Hưng Yên Province",
     "city": "Hung Yen",
     "anonymity": "Elite",
-    "speed": 1543
+    "speed": 1486
+  },
+  {
+    "ip_port": "84.47.150.125:1080",
+    "protocol": "HTTP",
+    "country": "RU",
+    "region": "",
+    "city": "",
+    "anonymity": "Elite",
+    "speed": 1521
+  },
+  {
+    "ip_port": "199.247.29.193:50000",
+    "protocol": "HTTP",
+    "country": "NL",
+    "region": "North Holland",
+    "city": "Amsterdam",
+    "anonymity": "Elite",
+    "speed": 1622
   },
   {
     "ip_port": "202.28.194.139:31280",
@@ -141,6 +141,15 @@
     "region": "Bangkok",
     "city": "Bangkok",
     "anonymity": "Elite",
-    "speed": 1664
+    "speed": 1783
+  },
+  {
+    "ip_port": "47.79.119.13:8080",
+    "protocol": "HTTP",
+    "country": "SG",
+    "region": "",
+    "city": "",
+    "anonymity": "Elite",
+    "speed": 2959
   }
 ]
